@@ -1,5 +1,6 @@
 package PockerRoom;
 
+import javax.smartcardio.Card;
 import java.util.ArrayList;
 
 /**
@@ -46,6 +47,8 @@ public class Game {
     public void play(){
 
         gameUnit = new ArrayList<Unit>();
+
+        Deck deck = new Deck(52);
 
         while(unitCount > 1){
 
@@ -132,6 +135,10 @@ public class Game {
      */
     void cake(){
 
+        // Каждый игрок совершает ход по порядку(0 = d, 1 = sb, 2 = bb, 3 = other, n = unitCount):
+        for(int i = 0; i < unitCount; i++){
+
+        }
     }
 
     /**

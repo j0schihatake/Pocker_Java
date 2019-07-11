@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ff9d6454-1872-45b8-9682-1f9e4a1e0405" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/PockerRoom/Deck.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PockerNI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PockerNI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/PockerRoom/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PockerRoom/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/PockerRoom/Unit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PockerRoom/Unit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/PockerNI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/PockerNI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/PockerRoom/Action.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/PockerRoom/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/PockerRoom/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/PockerRoom/Unit$role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/PockerRoom/Unit$role.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/PockerRoom/Unit.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/PockerRoom/Unit.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -44,12 +39,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="35" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
+            <state relative-caret-position="170">
+              <caret line="28" column="34" lean-forward="true" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="e#310#311#0" expanded="true" />
                 <element signature="e#352#353#0" expanded="true" />
                 <element signature="e#2480#2481#0" expanded="true" />
@@ -61,11 +57,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Deck.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Unit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="29" column="23" lean-forward="true" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+            <state relative-caret-position="170">
+              <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
             </state>
           </provider>
         </entry>
@@ -92,6 +97,7 @@
         <option value="$PROJECT_DIR$/src/main/java/PockerRoom/Action.java" />
         <option value="$PROJECT_DIR$/src/main/java/PockerNI.java" />
         <option value="$PROJECT_DIR$/src/main/java/PockerRoom/Unit.java" />
+        <option value="$PROJECT_DIR$/src/main/java/PockerRoom/Deck.java" />
         <option value="$PROJECT_DIR$/src/main/java/PockerRoom/Game.java" />
       </list>
     </option>
@@ -206,12 +212,12 @@
       <option name="presentableId" value="Default" />
       <updated>1562868383793</updated>
       <workItem from="1562868388281" duration="87000" />
-      <workItem from="1562868605781" duration="6487000" />
+      <workItem from="1562868605781" duration="7616000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6574000" />
+    <option name="totallyTimeSpent" value="7703000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="-7" width="1476" height="878" extended-state="6" />
@@ -287,21 +293,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="35" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
-          <folding>
-            <element signature="e#310#311#0" expanded="true" />
-            <element signature="e#352#353#0" expanded="true" />
-            <element signature="e#2480#2481#0" expanded="true" />
-            <element signature="e#2509#2510#0" expanded="true" />
-            <element signature="e#2285#2286#0" expanded="true" />
-            <element signature="e#2325#2326#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/PockerNI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -311,8 +302,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Unit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="29" column="23" lean-forward="true" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+        <state relative-caret-position="170">
+          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Deck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="28" column="34" lean-forward="true" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#310#311#0" expanded="true" />
+            <element signature="e#352#353#0" expanded="true" />
+            <element signature="e#2480#2481#0" expanded="true" />
+            <element signature="e#2509#2510#0" expanded="true" />
+            <element signature="e#2285#2286#0" expanded="true" />
+            <element signature="e#2325#2326#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
