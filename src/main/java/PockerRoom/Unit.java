@@ -11,6 +11,11 @@ public class Unit {
     public int money = 0;
 
     /**
+     * Являемся ли мы данным игроком:
+     */
+    public boolean isPlayer = false;
+
+    /**
      * Роль участника в игре:
      */
     public role unitRole;                   // роль игрока в игре
@@ -21,11 +26,23 @@ public class Unit {
         bb                                  // второй слева от диллера
     }
 
+    // Первоначальная подготовка игрока:
+    public void init(){
+
+    }
+
     // Игрок начинает игру как SB(первая ставка x1)
-    public void startSB(){}
+    public int startSB(){
+        this.money = money - Game.deposit;
+        return Game.deposit;
+
+    }
 
     // Игрок начинает игру как BB(вторая ставка 2*x1)
-    public void startBB(){}
+    public int startBB(){
+        this.money = money - Game.deposit*2;
+        return Game.deposit*2;
+    }
 
     /**
      * Возможные действия игрока в игре:

@@ -1,6 +1,6 @@
 package PockerRoom;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  * Game это виртуальная симуляция игры.
@@ -18,6 +18,16 @@ public class Game {
     public int gameState = 0;
 
     /**
+     * Сумма денег в банке.
+     */
+    public static int bank = 0;
+
+    /**
+     * Сумма стартового депозита:
+     */
+    public static int deposit = 0;
+
+    /**
      * Новая игра
      * @param unitCount - число игроков
      */
@@ -25,16 +35,19 @@ public class Game {
         this.unitCount = unitCount;
     }
 
-    public HashMap<Integer, Unit> gameUnit;
+    /**
+     * Мапа для доступа к игрокам по порядковому номер
+     */
+    public ArrayList<Unit> gameUnit;
 
     /**
      * Метод запускает игру:
      */
     public void play(){
 
-        gameUnit = new HashMap<Integer, Unit>();
+        gameUnit = new ArrayList<Unit>();
 
-        while(unitCount > 0){
+        while(unitCount > 1){
 
             // Игровые этапы:
             switch(gameState){
@@ -42,14 +55,40 @@ public class Game {
                 // Инициализация игры:
                 case 0:
                     initGame();
+
+                    gameState++;
                     break;
 
                 // Первый ход:
                 case 1:
+
+                    gameState++;
                     break;
 
-                // Последующие ходы:
+                // Второй ход + флоп:
                 case 2:
+
+                    gameState++;
+                    break;
+
+                // Третий ход + терн:
+                case 3:
+
+                    gameState++;
+                    break;
+
+                // Четвертый ход + ривер:
+                case 4:
+
+                    gameState++;
+                    break;
+
+                // Вскрытие:
+                case 5:
+
+                    //Конец игры.
+                    endGame();
+
                     break;
             }
         }
@@ -63,23 +102,52 @@ public class Game {
         // Диллер:
         Unit diller = new Unit();
         diller.unitRole = Unit.role.d;
-        gameUnit.put(0,diller);
+        diller.init();
+        gameUnit.add(diller);
 
         // SB
         Unit sb = new Unit();
         sb.unitRole = Unit.role.sb;
-        gameUnit.put(1,sb);
+        sb.init();
+        setBank(sb.startSB());                                  //платим deposit
+        gameUnit.add(sb);
 
         // BB
         Unit bb = new Unit();
         bb.unitRole = Unit.role.bb;
-        gameUnit.put(2, bb);
+        bb.init();
+        setBank(bb.startBB());                                  //платим 2*deposit
+        gameUnit.add(bb);
 
         // Добавляем остальных игроков:
         for(int i = 3; i < unitCount; i++){
             Unit otherUnit = new Unit();
             otherUnit.unitRole = Unit.role.empty;
-            gameUnit.put(i, otherUnit);
+            gameUnit.add(otherUnit);
         }
     }
+
+    /**
+     * Торг:
+     */
+    void cake(){
+
+    }
+
+    /**
+     * Заканчиваем игру:
+     */
+    void endGame(){
+        unitCount = 1;
+    }
+
+    /**
+     * Кладем что-то в банк:
+     * @param money - сумма вносимых средств
+     */
+    void setBank(int money){
+        this.bank = bank + money;
+    }
+
+    //------------------------------------------------Интеграция с NI---------------------------------------------------
 }
