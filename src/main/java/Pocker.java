@@ -29,7 +29,7 @@ public class Pocker {
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd hh mm ss a");
         Calendar now = Calendar.getInstance();
-        String patchName = "d:\\"+formatter.format(now.getTime())+".jpg";
+        String patchName = "d:\\test\\"+formatter.format(now.getTime())+".jpg";
 
         ImageUtil s2i = new ImageUtil();
         while(1==1)

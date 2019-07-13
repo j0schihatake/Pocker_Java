@@ -22,4 +22,15 @@ public class ImageUtil {
         BufferedImage screenShot = robot.createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
         ImageIO.write(screenShot, "JPG", new File(patchName));
     }
+
+    /**
+     * Метод возвращает обрезанное изображение
+     * @param src - исходное изображение(кусок которого требуется вернуть)
+     * @param rect - прямоугольник на екране заданный 4-мя координатами
+     * @return
+     */
+    public static BufferedImage cropImage(BufferedImage src, Rectangle rect) {
+        BufferedImage dest = src.getSubimage(0, 0, rect.width, rect.height);
+        return dest;
+    }
 }
