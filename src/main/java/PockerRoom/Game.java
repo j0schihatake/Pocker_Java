@@ -4,7 +4,7 @@ import javax.smartcardio.Card;
 import java.util.ArrayList;
 
 /**
- * Game это виртуальная симуляция игры.
+ * Game это виртуальная симуляция игры(одна запущенная игровая комната).
  */
 public class Game {
 
