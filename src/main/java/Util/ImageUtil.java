@@ -1,4 +1,4 @@
-package ImageRecognition;
+package Util;
 
 import java.awt.Rectangle;
 import java.awt.Robot;
@@ -6,9 +6,6 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.*;
 
 public class ImageUtil {
 
@@ -24,7 +21,7 @@ public class ImageUtil {
     }
 
     /**
-     * Метод возвращает обрезанное изображение
+     * Метод возвращает участок изображения
      * @param src - исходное изображение(кусок которого требуется вернуть)
      * @param rect - прямоугольник на екране заданный 4-мя координатами
      * @return

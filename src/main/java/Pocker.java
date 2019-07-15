@@ -1,6 +1,10 @@
-import ImageRecognition.ImageUtil;
+import Util.ImageUtil;
 import PockerRoom.*;
+import Util.InputUtil;
 
+import java.awt.*;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -18,7 +22,10 @@ public class Pocker {
         testGame.play();
 
         //---------------------------------Эксперименты с распознаванием изображения-------------------------------
-        screen();
+        //screen();
+
+        //---------------------------------Эксперименты с имитацией управления-------------------------------------
+        inputTest();
     }
 
     /**
@@ -37,6 +44,16 @@ public class Pocker {
             s2i.createScreenImage(patchName);
             Thread.sleep(10000);
         }
+    }
+
+    /**
+     * Выполняет тестовое нажатие клавиш с клавиатуры и тестовое управение мышью:
+     * @throws AWTException
+     */
+    public static void inputTest() throws AWTException {
+        InputUtil.klickMouseToCoordinats(10,20, InputEvent.BUTTON1_DOWN_MASK);
+        InputUtil.pressKey(KeyEvent.VK_A);
+        InputUtil.pressKeys("alt+tab");
     }
 
 }
