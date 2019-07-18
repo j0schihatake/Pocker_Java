@@ -3,7 +3,7 @@ package NI;
 public class NINeuron {
 
     // Конструктор с автоматической настройкой типа нейрона:
-    NINeuron(int type){
+    public NINeuron(int type){
         switch(type){
             case 0:
                 this.type = type_Info.int_;
