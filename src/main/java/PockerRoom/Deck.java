@@ -1,6 +1,9 @@
 package PockerRoom;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * Колода карт:
@@ -38,6 +41,15 @@ public class Deck {
      */
     public HashMap<Integer, Integer> carts = new HashMap<Integer, Integer>();
 
+    /**
+     * Список карт в колоде(0 - вверху колоды, n - снизу колоды)
+     */
+    public ArrayList<Integer> deckBox = new ArrayList<Integer>();
+
+    /**
+     * Конструктор:
+     * @param cardCount - число карт в колоде:
+     */
     public Deck(int cardCount){
 
         this.cardCount = cardCount;
@@ -47,6 +59,7 @@ public class Deck {
 
     /**
      * Первоначальная настройка колоды карт:
+     * Переписать если у разных мастей разное число карт.
      */
     private void initColode(int cartCount){
 
@@ -65,7 +78,25 @@ public class Deck {
 
                 // value = 0 так как все карты в колоде:
                 carts.put(nextCartValue, 0);
+
+                deckBox.add(nextCartValue);
             }
         }
+    }
+
+    /**
+     * Перетасовать карты в колоде
+     */
+    public void toSchufle(){
+        Collections.shuffle(deckBox);
+    }
+
+    /**
+     * Достать рандомную карту из колоды:
+     * @return порядковый номер(index) в deckBox - колоде
+     */
+    public int getRandomCart(){
+        int returnValue = new Random().nextInt( deckBox.size() + 1);
+        return returnValue > 0 ? returnValue - 1 : 0;
     }
 }

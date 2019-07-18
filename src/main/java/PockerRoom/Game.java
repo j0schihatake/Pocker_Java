@@ -122,8 +122,8 @@ public class Game {
         setBank(bb.startBB());                                  //платим 2*deposit
         gameUnit.add(bb);
 
-        // Подготавливаем колоду(наполняем тусуем):
-
+        // Подготавливаем колоду(наполняем, тусуем):
+        Deck deck = new Deck(34);
 
         // Добавляем остальных игроков:
         for(int i = 3; i < unitCount; i++){

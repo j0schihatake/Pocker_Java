@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ff9d6454-1872-45b8-9682-1f9e4a1e0405" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Pocker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Pocker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PockerRoom/Cart.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/PockerRoom/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PockerRoom/Deck.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/PockerRoom/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PockerRoom/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PockerRoom/Unit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PockerRoom/Unit.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -50,8 +48,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="125" selection-start-line="125" selection-end-line="125" />
+            <state relative-caret-position="375">
+              <caret line="121" column="82" lean-forward="true" selection-start-line="121" selection-start-column="82" selection-end-line="121" selection-end-column="82" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2983#2984#0" expanded="true" />
@@ -68,10 +66,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Deck.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="67" column="13" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
+            <state relative-caret-position="477">
+              <caret line="95" column="57" selection-start-line="95" selection-start-column="57" selection-end-line="95" selection-end-column="57" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="e#293#311#0" expanded="true" />
+                <element signature="e#1193#1202#0" expanded="true" />
+                <element signature="e#2214#2215#0" expanded="true" />
+                <element signature="e#2257#2258#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -80,8 +82,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Unit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="22" column="25" lean-forward="true" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
+            <state relative-caret-position="239">
+              <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
             </state>
           </provider>
         </entry>
@@ -105,7 +107,6 @@
         <option value="$PROJECT_DIR$/src/main/java/pockerRoom/Unit.java" />
         <option value="$PROJECT_DIR$/src/main/java/pockerRoom/Game.java" />
         <option value="$PROJECT_DIR$/src/main/java/PockerRoom/Action.java" />
-        <option value="$PROJECT_DIR$/src/main/java/PockerRoom/Unit.java" />
         <option value="$PROJECT_DIR$/src/main/java/PockerNI.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/ImageRecognition/WindowScreen.java" />
@@ -119,8 +120,9 @@
         <option value="$PROJECT_DIR$/src/main/java/Util/Input/VirtualKeyboard.java" />
         <option value="$PROJECT_DIR$/src/main/java/Util/InputUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/Pocker.java" />
-        <option value="$PROJECT_DIR$/src/main/java/PockerRoom/Game.java" />
         <option value="$PROJECT_DIR$/src/main/java/PockerRoom/Cart.java" />
+        <option value="$PROJECT_DIR$/src/main/java/PockerRoom/Unit.java" />
+        <option value="$PROJECT_DIR$/src/main/java/PockerRoom/Game.java" />
         <option value="$PROJECT_DIR$/src/main/java/PockerRoom/Deck.java" />
       </list>
     </option>
@@ -250,12 +252,12 @@
       <workItem from="1563027906596" duration="1207000" />
       <workItem from="1563048864748" duration="3699000" />
       <workItem from="1563221143352" duration="3961000" />
-      <workItem from="1563467316410" duration="4402000" />
+      <workItem from="1563467316410" duration="6033000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21667000" />
+    <option name="totallyTimeSpent" value="23298000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="-7" width="1476" height="878" extended-state="6" />
@@ -408,17 +410,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Unit.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Cart.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="22" column="25" lean-forward="true" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
+        <state relative-caret-position="119">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="125" selection-start-line="125" selection-end-line="125" />
+        <state relative-caret-position="375">
+          <caret line="121" column="82" lean-forward="true" selection-start-line="121" selection-start-column="82" selection-end-line="121" selection-end-column="82" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2983#2984#0" expanded="true" />
@@ -431,19 +433,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Cart.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Unit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        <state relative-caret-position="239">
+          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Deck.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="67" column="13" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
+        <state relative-caret-position="477">
+          <caret line="95" column="57" selection-start-line="95" selection-start-column="57" selection-end-line="95" selection-end-column="57" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="e#293#311#0" expanded="true" />
+            <element signature="e#1193#1202#0" expanded="true" />
+            <element signature="e#2214#2215#0" expanded="true" />
+            <element signature="e#2257#2258#0" expanded="true" />
           </folding>
         </state>
       </provider>
