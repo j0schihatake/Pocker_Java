@@ -4,7 +4,6 @@
     <list default="true" id="ff9d6454-1872-45b8-9682-1f9e4a1e0405" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/PockerRoom/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PockerRoom/Deck.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/PockerRoom/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PockerRoom/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PockerRoom/Unit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PockerRoom/Unit.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -48,8 +47,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="121" column="82" lean-forward="true" selection-start-line="121" selection-start-column="82" selection-end-line="121" selection-end-column="82" />
+            <state relative-caret-position="459">
+              <caret line="131" column="49" lean-forward="true" selection-start-line="131" selection-start-column="49" selection-end-line="131" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2983#2984#0" expanded="true" />
@@ -66,8 +65,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Deck.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="477">
-              <caret line="95" column="57" selection-start-line="95" selection-start-column="57" selection-end-line="95" selection-end-column="57" />
+            <state relative-caret-position="222">
+              <caret line="99" column="46" lean-forward="true" selection-start-line="99" selection-start-column="46" selection-end-line="99" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#293#311#0" expanded="true" />
@@ -134,7 +133,7 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="75" />
     <option name="y" value="5" />
     <option name="width" value="1285" />
@@ -252,12 +251,12 @@
       <workItem from="1563027906596" duration="1207000" />
       <workItem from="1563048864748" duration="3699000" />
       <workItem from="1563221143352" duration="3961000" />
-      <workItem from="1563467316410" duration="6033000" />
+      <workItem from="1563467316410" duration="6774000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23298000" />
+    <option name="totallyTimeSpent" value="24039000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="-7" width="1476" height="878" extended-state="6" />
@@ -417,10 +416,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Unit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="121" column="82" lean-forward="true" selection-start-line="121" selection-start-column="82" selection-end-line="121" selection-end-column="82" />
+        <state relative-caret-position="459">
+          <caret line="131" column="49" lean-forward="true" selection-start-line="131" selection-start-column="49" selection-end-line="131" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2983#2984#0" expanded="true" />
@@ -433,17 +439,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Unit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Deck.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="95" column="57" selection-start-line="95" selection-start-column="57" selection-end-line="95" selection-end-column="57" />
+        <state relative-caret-position="222">
+          <caret line="99" column="46" lean-forward="true" selection-start-line="99" selection-start-column="46" selection-end-line="99" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#293#311#0" expanded="true" />

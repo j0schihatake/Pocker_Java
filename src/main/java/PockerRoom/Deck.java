@@ -93,10 +93,29 @@ public class Deck {
 
     /**
      * Достать рандомную карту из колоды:
-     * @return порядковый номер(index) в deckBox - колоде
+     * @return порядковый номер(index) в deckBox - колоде,проверить на ошибки.
      */
-    public int getRandomCart(){
+    public int getRandomCart(int player){
         int returnValue = new Random().nextInt( deckBox.size() + 1);
-        return returnValue > 0 ? returnValue - 1 : 0;
+        // Включаем граничные условия 0 - max;
+        returnValue = returnValue > 0 ? returnValue - 1 : 0;
+        // закрепляем карту за игроком/столом/колодой:
+        updateCarts(deckBox.get(returnValue), player);
+        return returnValue;
+    }
+
+    /**
+     * Обновляем сведения о карте в HashMap:
+     */
+    private void updateCarts(int cartValue, int player){
+        /**
+         *  0 - в колоде
+         *  1 - на столе
+         *  2 - Диллер
+         *  3 - MB
+         *  4 - BB
+         *  5..n - другие игроки
+         */
+        carts.put(cartValue, player);
     }
 }

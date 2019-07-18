@@ -124,6 +124,7 @@ public class Game {
 
         // Подготавливаем колоду(наполняем, тусуем):
         Deck deck = new Deck(34);
+        deck.toSchufle();
 
         // Добавляем остальных игроков:
         for(int i = 3; i < unitCount; i++){
