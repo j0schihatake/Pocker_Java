@@ -37,7 +37,7 @@ public class Game {
     }
 
     /**
-     * Мапа для доступа к игрокам по порядковому номер
+     * Список для доступа к игрокам по порядковому номеру
      */
     public ArrayList<Unit> gameUnit;
 
@@ -59,31 +59,31 @@ public class Game {
                 case 0:
                     initGame();
 
-                    gameState++;
+                    goToNextStageLevel();
                     break;
 
                 // Первый ход:
                 case 1:
 
-                    gameState++;
+                    goToNextStageLevel();
                     break;
 
                 // Второй ход + флоп:
                 case 2:
 
-                    gameState++;
+                    goToNextStageLevel();
                     break;
 
                 // Третий ход + терн:
                 case 3:
 
-                    gameState++;
+                    goToNextStageLevel();
                     break;
 
                 // Четвертый ход + ривер:
                 case 4:
 
-                    gameState++;
+                    goToNextStageLevel();
                     break;
 
                 // Вскрытие:
@@ -122,6 +122,9 @@ public class Game {
         setBank(bb.startBB());                                  //платим 2*deposit
         gameUnit.add(bb);
 
+        // Подготавливаем колоду(наполняем тусуем):
+
+
         // Добавляем остальных игроков:
         for(int i = 3; i < unitCount; i++){
             Unit otherUnit = new Unit();
@@ -139,6 +142,13 @@ public class Game {
         for(int i = 0; i < unitCount; i++){
 
         }
+    }
+
+    /**
+     * Переход к следующему раунду:
+     */
+    void goToNextStageLevel(){
+        gameState++;
     }
 
     /**

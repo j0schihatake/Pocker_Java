@@ -15,7 +15,7 @@ public class Pocker {
 
     public static void main(String[] arrgs) throws Exception {
 
-        // В целях тестирования можно запустить тестовую(виртуальную) игру:
+        // В целях тестирования/обучения можно запустить тестовую(виртуальную) игру:
         Game testGame = new Game(10);
 
         // Запуск тестовой игры:
