@@ -1,10 +1,9 @@
-package NI;
+package NI.Pattern;
 
 import java.util.ArrayList;
 
 // Простейшая нейронная сеть. Основа всего!
 public class NINetwork {
-
     // name - УНИКАЛЬНОЕ название нейронной сети.
     public String name = "Новая нейронная сеть";
 
@@ -95,7 +94,8 @@ public class NINetwork {
     public NINetwork(NIInput input, NIResult result, String name) { }
 
     //Еще один конструктор:
-    public NINetwork(String name) {
+    public NINetwork(String name)
+    {
         this.name = name;
     }
 
@@ -127,10 +127,11 @@ public class NINetwork {
 
         //Получаем количество входов и выходов на основе первого примера.
         INPUT_NEURONS = initSample.input;
+        HIDDEN_NEURONS = INPUT_NEURONS.size();
         OUTPUT_NEURONS = initSample.output;
 
         // Вход скрытых ячеек(смещение удаляю)
-        wih = new float[INPUT_NEURONS.size()][ HIDDEN_NEURONS];
+        wih = new float[INPUT_NEURONS.size()][HIDDEN_NEURONS];
 
         // Вход выходных ячеек(смещение удаляю)
         who = new float[HIDDEN_NEURONS][OUTPUT_NEURONS.size()];
@@ -148,11 +149,12 @@ public class NINetwork {
         // Инициализировать генератор случайных чисел
         assignRandomWeights();
 
-        if(samples.contains(initSample)){
+        if(samples.contains(initSample))
+        {
             samples.remove(initSample);
         }
         // Если в списке примеров имеются примеры то выполняем обучение:
-        if (samples.size() > 0)
+        if(samples.size() > 0)
         {
             learn();
         }
@@ -166,17 +168,17 @@ public class NINetwork {
     {
         int iter_Count = 0;
         //Обучить сеть
-        while (iter_Count < iterations)
+        while(iter_Count < iterations)
         {
             // Пробегаем каждый пример:
-            for (int i = 0; i < samples.size(); i++)
+            for(int i = 0; i < samples.size(); i++)
             {
                 NISample current = samples.get(i);
                 // Пробегаем каждый входной нейрон
-                for (int j = 0; j < current.input.size(); j++)
+                for(int j = 0; j < current.input.size(); j++)
                 {
                     // Наполняем входной слой примерами:
-                    switch (current.input.get(j).type)
+                    switch(current.input.get(j).type)
                     {
                         case int_:
                             inputs[j] = (float)current.input.get(j).intCount;
@@ -185,7 +187,7 @@ public class NINetwork {
                             inputs[j] = (float)current.input.get(j).floatCount;
                             break;
                         case bool_:
-                            if (current.input.get(j).boolCount)
+                            if(current.input.get(j).boolCount)
                             {
                                 inputs[j] = (float)1;
                             }
@@ -196,7 +198,7 @@ public class NINetwork {
                             break;
                     }
                     // Наполняем выходной слой известными результатами:
-                    switch (current.output.get(j).type)
+                    switch(current.output.get(j).type)
                     {
                         case int_:
                             target[j] = (float)current.output.get(j).intCount;
@@ -205,7 +207,7 @@ public class NINetwork {
                             target[j] = (float)current.output.get(j).floatCount;
                             break;
                         case bool_:
-                            if (current.output.get(j).boolCount)
+                            if(current.output.get(j).boolCount)
                             {
                                 target[j] = (float)1;
                             }
@@ -221,7 +223,7 @@ public class NINetwork {
 
                 err = 0.0f;
                 //Квадратичная ошибка для каждого из выходов:
-                for (int k = 0; k < current.output.size(); k++)
+                for(int k = 0; k < current.output.size(); k++)
                 {
                     err += (float)Math.sqrt((target[k] - actual[k]));
                 }
@@ -244,10 +246,10 @@ public class NINetwork {
         float sum;
 
         //Вычислить вход в скрытый слой
-        for (hid = 0; hid < HIDDEN_NEURONS; hid++)
+        for(hid = 0; hid < HIDDEN_NEURONS; hid++)
         {
             sum = 0f;
-            for (inp = 0; inp < INPUT_NEURONS.size(); inp++)
+            for(inp = 0; inp < INPUT_NEURONS.size(); inp++)
             {
                 sum += inputs[inp] * wih[inp][hid];
             }
@@ -257,10 +259,10 @@ public class NINetwork {
         }
 
         //Вычислить вход в выходной слой
-        for (outs = 0; outs < OUTPUT_NEURONS.size(); outs++)
+        for(outs = 0; outs < OUTPUT_NEURONS.size(); outs++)
         {
             sum = 0.0f;
-            for (hid = 0; hid < HIDDEN_NEURONS; hid++)
+            for(hid = 0; hid < HIDDEN_NEURONS; hid++)
             {
                 sum += hidden[hid] * who[hid][outs];
             }
@@ -271,7 +273,8 @@ public class NINetwork {
     }
 
     //Метод возвращает максимальное значение(или index из списка):
-    int getMaxActual(){
+    int getMaxActual()
+    {
 
         int result = 0;
         float min = 0;
@@ -279,8 +282,10 @@ public class NINetwork {
         //выполняем собственно обработку информации:
         feedForward();
 
-        for(int i = 0; i < actual.length; i++){
-            if(min < actual[i]){
+        for(int i = 0; i < actual.length; i++)
+        {
+            if(min < actual[i])
+            {
                 min = actual[i];
                 result = i;
             }
@@ -297,24 +302,24 @@ public class NINetwork {
         int inp, hid, outs;
 
         //Вычислить ошибку выходного слоя (шаг 3 для выходных ячеек)
-        for (outs = 0; outs < OUTPUT_NEURONS.size(); outs++)
+        for(outs = 0; outs < OUTPUT_NEURONS.size(); outs++)
         {
             erro[outs] = (target[outs] - actual[outs]) * sigmoidDerivative(actual[outs]);
         }
         //Вычислить ошибку скрытого слоя (шаг 3 для скрытого слоя)
-        for (hid = 0; hid < HIDDEN_NEURONS; hid++)
+        for(hid = 0; hid < HIDDEN_NEURONS; hid++)
         {
             errh[hid] = 0.0f;
-            for (outs = 0; outs < OUTPUT_NEURONS.size(); outs++)
+            for(outs = 0; outs < OUTPUT_NEURONS.size(); outs++)
             {
                 errh[hid] += erro[outs] * who[hid][outs];
             }
             errh[hid] *= sigmoidDerivative(hidden[hid]);
         }
         //Обновить веса для выходного слоя(шаг 4 для выходных ячеек)
-        for (outs = 0; outs < OUTPUT_NEURONS.size(); outs++)
+        for(outs = 0; outs < OUTPUT_NEURONS.size(); outs++)
         {
-            for (hid = 0; hid < HIDDEN_NEURONS; hid++)
+            for(hid = 0; hid < HIDDEN_NEURONS; hid++)
             {
                 who[hid][outs] += (LEARN_RATE * erro[outs] * hidden[hid]);
             }
@@ -322,9 +327,9 @@ public class NINetwork {
             //who[HIDDEN_NEURONS][outs] += (LEARN_RATE * erro[outs]);
         }
         //Обновить веса для скрытого слоя (шаг 4 для скрытого слоя)
-        for (hid = 0; hid < HIDDEN_NEURONS; hid++)
+        for(hid = 0; hid < HIDDEN_NEURONS; hid++)
         {
-            for (inp = 0; inp < INPUT_NEURONS.size(); inp++)
+            for(inp = 0; inp < INPUT_NEURONS.size(); inp++)
             {
                 wih[inp][hid] += (LEARN_RATE * errh[hid] * inputs[inp]);
             }
@@ -360,17 +365,17 @@ public class NINetwork {
     {
         int hid, inp, outs;
         //Назначаем случайные веса(по идее только первый раз)
-        for (inp = 0; inp < INPUT_NEURONS.size(); inp++)
+        for(inp = 0; inp < INPUT_NEURONS.size(); inp++)
         {
-            for (hid = 0; hid < HIDDEN_NEURONS; hid++)
+            for(hid = 0; hid < HIDDEN_NEURONS; hid++)
             {
                 RAND_WEIGHT = getRandomWEIGHT();
                 wih[inp][hid] = RAND_WEIGHT;
             }
         }
-        for (hid = 0; hid < HIDDEN_NEURONS; hid++)
+        for(hid = 0; hid < HIDDEN_NEURONS; hid++)
         {
-            for (outs = 0; outs < HIDDEN_NEURONS; outs++)
+            for(outs = 0; outs < HIDDEN_NEURONS; outs++)
             {
                 who[hid][outs] = RAND_WEIGHT;
             }
@@ -401,8 +406,9 @@ public class NINetwork {
     /// Данный метод проверяет входящий пример на корректность, и применяет различные методики для предотвращения ошибок,
     /// например при большем количестве данных во входящем примере он игнорирует, отсутствующие данные.
     /// </summary>
-    private NISample sample_Loader(NISample loadSample) {
-        NISample returned = null;
+    private NISample sample_Loader(NISample loadSample)
+    {
+        NISample returned = loadSample;
         return returned;
     }
 }

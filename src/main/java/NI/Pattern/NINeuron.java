@@ -1,4 +1,4 @@
-package NI;
+package NI.Pattern;
 
 public class NINeuron {
 
