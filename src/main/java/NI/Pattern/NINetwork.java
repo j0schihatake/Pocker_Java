@@ -273,7 +273,7 @@ public class NINetwork {
     }
 
     //Метод возвращает максимальное значение(или index из списка):
-    int getMaxActual()
+    public int getMaxActual()
     {
 
         int result = 0;
