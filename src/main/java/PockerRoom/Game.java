@@ -1,6 +1,5 @@
 package PockerRoom;
 
-import javax.smartcardio.Card;
 import java.util.ArrayList;
 
 /**
@@ -102,36 +101,25 @@ public class Game {
      */
     void initGame(){
 
-        // Диллер:
-        Unit diller = new Unit();
-        diller.unitRole = Unit.role.d;
-        diller.init();
-        gameUnit.add(diller);
+        for(int i = 0; i < unitCount; i++){
+            Unit nextUnit = new Unit();
+            nextUnit.role = i;
+            gameUnit.add(nextUnit);
+            nextUnit.init();
 
-        // SB
-        Unit sb = new Unit();
-        sb.unitRole = Unit.role.sb;
-        sb.init();
-        setBank(sb.startSB());                                  //платим deposit
-        gameUnit.add(sb);
-
-        // BB
-        Unit bb = new Unit();
-        bb.unitRole = Unit.role.bb;
-        bb.init();
-        setBank(bb.startBB());                                  //платим 2*deposit
-        gameUnit.add(bb);
+            switch(i){
+                case 1:
+                    setBank(nextUnit.startSB());                                  //платим deposit
+                    break;
+                case 2:
+                    setBank(nextUnit.startBB());                                  //платим 2*deposit
+                    break;
+            }
+        }
 
         // Подготавливаем колоду(наполняем, тусуем):
         Deck deck = new Deck(34);
         deck.toSchufle();
-
-        // Добавляем остальных игроков:
-        for(int i = 3; i < unitCount; i++){
-            Unit otherUnit = new Unit();
-            otherUnit.unitRole = Unit.role.empty;
-            gameUnit.add(otherUnit);
-        }
     }
 
     /**
