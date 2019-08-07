@@ -1,8 +1,8 @@
 package NI;
 
-import NI.Pattern.NINetwork;
-import NI.Pattern.NINeuron;
-import NI.Pattern.NISample;
+import NI.Components.NINetwork;
+import NI.Components.NINeuron;
+import NI.Components.NISample;
 
 import java.util.ArrayList;
 import java.util.Random;

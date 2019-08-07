@@ -1,4 +1,4 @@
-package NI.Pattern;
+package NI.Components;
 
 import java.util.ArrayList;
 

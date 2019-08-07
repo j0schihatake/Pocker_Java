@@ -1,61 +1,51 @@
-package NI.Pattern;
+package NI.Components;
 
 import java.util.ArrayList;
 
-// Простейшая нейронная сеть. Основа всего!
+// Универсальная нейронная сеть.
 public class NINetwork {
     // name - УНИКАЛЬНОЕ название нейронной сети.
     public String name = "Новая нейронная сеть";
 
-    /// Тип источника примеров:
-    public learnSampleInput sample_Type;
-    public enum learnSampleInput
-    {
-        only_this,                                      //использовать внутренний список примеров.
-        neuroCenterSample,                              //использовать список примеров из текущего неронного центра
-    }
-
-    /// Тип источника обрабатываемых данных:
-    public work_input_type work_Type;
-    public enum work_input_type
-    {
-        only_this,
-        neuroCenterInput,
-    }
-
-    //Количество учавствующих:
+    // Количество учавствующих:
     private ArrayList<NINeuron> INPUT_NEURONS = new ArrayList<NINeuron>();
-    //число скрытых нейронов равно числу входных нейронов:
+
+    // Количество скрытых слоев(по умолчанию 1):
+    private int LAYER_HIDDEN_NEURONS = 1;
+
+    // Число скрытых нейронов равно числу входных нейронов:
     private int HIDDEN_NEURONS = 1;
     private ArrayList<NINeuron> OUTPUT_NEURONS = new ArrayList<NINeuron>();
 
-    //Коэффициент обучения:
+    // Коэффициент обучения:
     private float LEARN_RATE = 0.2f;
 
-    //Случайные веса:
+    // Случайные веса:
     private float RAND_WEIGHT = 0f;
     private float RAND_MAX = 0.5f;
 
-    /// Список примеров: NISample.
+    /**
+     * Список имеющихся примеров(набор входных данных + известный "правильный результат")
+     */
     public ArrayList<NISample> samples = new ArrayList<NISample>();
 
-    //Входной слой, данные от пользователя
+    // Входной слой, данные от пользователя
     public NISample inputSample = null;
 
     //--------------------------------------------Веса
-    //Вход скрытых ячеек(со смещением)
+    // Вход скрытых ячеек(со смещением)
     public float[][] wih;
 
-    //Вход выходных ячеек(со смещением)
+    // Вход выходных ячеек(со смещением)
     public float[][] who;
 
-    //Активаторы
+    // Активаторы
     public float[] inputs;
     public float[] hidden;
     public float[] target;
     public float[] actual;
 
-    //Ошибки
+    // Ошибки
     public float[] erro;
     public float[] errh;
     public float err = 0f;
@@ -93,7 +83,7 @@ public class NINetwork {
     /// <param name="ni_center"></param>
     public NINetwork(NIInput input, NIResult result, String name) { }
 
-    //Еще один конструктор:
+    // Еще один конструктор:
     public NINetwork(String name)
     {
         this.name = name;
@@ -115,15 +105,8 @@ public class NINetwork {
     public void initialize()
     {
         NISample initSample = null;
-        //В зависимости от установленного источника примеров
+        // В зависимости от установленного источника примеров
         initSample = inputSample;
-        /*
-        switch (sample_Type) {
-            case only_this:
-                initSample = inputSample;
-                break;
-        }
-        */
 
         //Получаем количество входов и выходов на основе первого примера.
         INPUT_NEURONS = initSample.input;
@@ -230,10 +213,10 @@ public class NINetwork {
 
                 err = 0.5f * err;
                 iter_Count++;
-                //собственно выполняем обучение
+                // собственно выполняем обучение
                 backPropagate();
             }
-            //System.out.println("Всего итераций: " + iterations + ", текущая итерация обучения: " + iter_Count );
+            // System.out.println("Всего итераций: " + iterations + ", текущая итерация обучения: " + iter_Count );
         }
     }
 
@@ -245,7 +228,7 @@ public class NINetwork {
         int inp, hid, outs;
         float sum;
 
-        //Вычислить вход в скрытый слой
+        // Вычислить вход в скрытый слой
         for(hid = 0; hid < HIDDEN_NEURONS; hid++)
         {
             sum = 0f;
@@ -253,12 +236,12 @@ public class NINetwork {
             {
                 sum += inputs[inp] * wih[inp][hid];
             }
-            //Добавить смещение
-            //sum += wih[INPUT_NEURONS, hid];
+            // Добавить смещение
+            // sum += wih[INPUT_NEURONS, hid];
             hidden[hid] = sigmoid(sum);
         }
 
-        //Вычислить вход в выходной слой
+        // Вычислить вход в выходной слой
         for(outs = 0; outs < OUTPUT_NEURONS.size(); outs++)
         {
             sum = 0.0f;
@@ -266,20 +249,20 @@ public class NINetwork {
             {
                 sum += hidden[hid] * who[hid][outs];
             }
-            //Добавить смещение
-            //sum += who[HIDDEN_NEURONS, outs];
+            // Добавить смещение
+            // sum += who[HIDDEN_NEURONS, outs];
             actual[outs] = sigmoid(sum);
         }
     }
 
-    //Метод возвращает максимальное значение(или index из списка):
+    // Метод возвращает максимальное значение(или index из списка):
     public int getMaxActual()
     {
 
         int result = 0;
         float min = 0;
 
-        //выполняем собственно обработку информации:
+        // выполняем собственно обработку информации:
         feedForward();
 
         for(int i = 0; i < actual.length; i++)
@@ -290,7 +273,7 @@ public class NINetwork {
                 result = i;
             }
         }
-        //Возвращаем индекс правильного действия:
+        // Возвращаем индекс правильного действия:
         return result;
     }
 
@@ -301,12 +284,12 @@ public class NINetwork {
     {
         int inp, hid, outs;
 
-        //Вычислить ошибку выходного слоя (шаг 3 для выходных ячеек)
+        // Вычислить ошибку выходного слоя (шаг 3 для выходных ячеек)
         for(outs = 0; outs < OUTPUT_NEURONS.size(); outs++)
         {
             erro[outs] = (target[outs] - actual[outs]) * sigmoidDerivative(actual[outs]);
         }
-        //Вычислить ошибку скрытого слоя (шаг 3 для скрытого слоя)
+        // Вычислить ошибку скрытого слоя (шаг 3 для скрытого слоя)
         for(hid = 0; hid < HIDDEN_NEURONS; hid++)
         {
             errh[hid] = 0.0f;
@@ -316,24 +299,24 @@ public class NINetwork {
             }
             errh[hid] *= sigmoidDerivative(hidden[hid]);
         }
-        //Обновить веса для выходного слоя(шаг 4 для выходных ячеек)
+        // Обновить веса для выходного слоя(шаг 4 для выходных ячеек)
         for(outs = 0; outs < OUTPUT_NEURONS.size(); outs++)
         {
             for(hid = 0; hid < HIDDEN_NEURONS; hid++)
             {
                 who[hid][outs] += (LEARN_RATE * erro[outs] * hidden[hid]);
             }
-            //Обновить смещение
+            // Обновить смещение
             //who[HIDDEN_NEURONS][outs] += (LEARN_RATE * erro[outs]);
         }
-        //Обновить веса для скрытого слоя (шаг 4 для скрытого слоя)
+        // Обновить веса для скрытого слоя (шаг 4 для скрытого слоя)
         for(hid = 0; hid < HIDDEN_NEURONS; hid++)
         {
             for(inp = 0; inp < INPUT_NEURONS.size(); inp++)
             {
                 wih[inp][hid] += (LEARN_RATE * errh[hid] * inputs[inp]);
             }
-            //Обновить смещение
+            // Обновить смещение
             //wih[INPUT_NEURONS.size()][hid] += (LEARN_RATE * errh[hid]);
         }
     }
@@ -364,7 +347,7 @@ public class NINetwork {
     public void assignRandomWeights()
     {
         int hid, inp, outs;
-        //Назначаем случайные веса(по идее только первый раз)
+        // Назначаем случайные веса(по идее только первый раз)
         for(inp = 0; inp < INPUT_NEURONS.size(); inp++)
         {
             for(hid = 0; hid < HIDDEN_NEURONS; hid++)

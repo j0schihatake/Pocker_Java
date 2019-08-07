@@ -1,6 +1,7 @@
 import Util.ImageUtil;
 import PockerRoom.*;
 import Util.InputUtil;
+import Util.VirtualDesktop.Table;
 
 import java.awt.*;
 import java.awt.event.InputEvent;
@@ -22,10 +23,11 @@ public class Pocker {
         testGame.play();
 
         //---------------------------------Эксперименты с распознаванием изображения-------------------------------
-        //screen();
+        screen();
 
         //---------------------------------Эксперименты с имитацией управления-------------------------------------
-        inputTest();
+        //inputTest();
+
     }
 
     /**
@@ -34,23 +36,33 @@ public class Pocker {
      */
     public static void screen() throws Exception {
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd hh mm ss a");
-        Calendar now = Calendar.getInstance();
-        String patchName = "d:\\test\\"+formatter.format(now.getTime())+".jpg";
+        // String patchName = ImageUtil.getRandomName("d:\\Pocker\\Example0\\");
 
-        ImageUtil s2i = new ImageUtil();
-        while(1==1)
-        {
-            s2i.createScreenImage(patchName);
-            Thread.sleep(10000);
-        }
+        // Rectangle subImage = new Rectangle(0,0,128,128);
+
+        // ImageUtil.createScreenImage(patchName);
+
+        /**
+         * 1) с этим все более менее понятно каждый пиксель это -15593193
+         * 2) не буду учитывать минус при декодированиии,
+         * 3) а так - же для преобразованияв значения от 0 до 1 / 1
+         */
+        // ImageUtil.grabPixels(patchName,subImage);
+
+        // с этим методом получается нихрена мне непонятный массив(там и заголовки и ещехерь всякая)
+        // ImageUtil.imageToMassive(patchName, subImage);
+
+        // тестирую создание файла кусочка изображения
+        // ImageUtil.cropAndSaveImage(patchName,subImage);
+
+        // Thread.sleep(10000);
     }
 
     /**
      * Выполняет тестовое нажатие клавиш с клавиатуры и тестовое управение мышью:
      * @throws AWTException
      */
-    public static void inputTest() throws AWTException {
+    public static void inputTest() throws AWTException, InterruptedException {
         InputUtil.klickMouseToCoordinats(10,20, InputEvent.BUTTON1_DOWN_MASK);
         InputUtil.pressKey(KeyEvent.VK_A);
         InputUtil.pressKeys("alt+tab");
