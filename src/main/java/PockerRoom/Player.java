@@ -1,11 +1,12 @@
 package PockerRoom;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
  * Участник игры.
  */
-public class Unit {
+public class Player {
 
     /**
      * Деньги игрока.
@@ -32,11 +33,44 @@ public class Unit {
     public int role = 0;
 
     /**
+     * Action - область где отражено выполненное игроком действие(надпись)/Login
+     */
+    public Rectangle playerLoginAction;
+
+    public String playerExampleActionFilePatch = "d:\\Pocker\\ExampleDLP\\Action\\";
+
+    /**
+     * Money - область где отображены средства игрока(цифра)
+     */
+    public Rectangle playerMoney;
+
+    public String playerExampleMoneyFilePatch = "d:\\Pocker\\ExampleDLP\\Money\\";
+
+    /**
+     * Active - область где отображено что текущий игрок активен(выделение контура)
+     */
+    public Rectangle playerActive;
+
+    public String playerExampleActiveFilePatch = "d:\\Pocker\\ExampleDLP\\Active\\";
+
+    /**
+     * Diller - областьгде отображено что текущий игрок диллер(сердечко)
+     */
+    public Rectangle playerDiller;
+
+    public String playerExampleDillerFilePatch = "d:\\Pocker\\ExampleDLP\\Diller\\";
+
+    /**
+     * Ставка игрока
+     */
+    public static Rectangle playerBet;
+
+    public static String playerExampleBetFilePatch = "d:\\Pocker\\ExampleDLP\\Rect\\";
+
+    /**
      * Первоначальная подготовка игрока:
      */
-    public void init(){
-
-    }
+    public void init(){}
 
     /**
      * Игрок начинает игру как SB(первая ставка x1)

@@ -38,14 +38,14 @@ public class Game {
     /**
      * Список для доступа к игрокам по порядковому номеру
      */
-    public ArrayList<Unit> gameUnit;
+    public ArrayList<Player> gamePlayer;
 
     /**
      * Метод запускает игру:
      */
     public void play(){
 
-        gameUnit = new ArrayList<Unit>();
+        gamePlayer = new ArrayList<Player>();
 
         Deck deck = new Deck(52);
 
@@ -102,17 +102,17 @@ public class Game {
     void initGame(){
 
         for(int i = 0; i < unitCount; i++){
-            Unit nextUnit = new Unit();
-            nextUnit.role = i;
-            gameUnit.add(nextUnit);
-            nextUnit.init();
+            Player nextPlayer = new Player();
+            nextPlayer.role = i;
+            gamePlayer.add(nextPlayer);
+            nextPlayer.init();
 
             switch(i){
                 case 1:
-                    setBank(nextUnit.startSB());                                  //платим deposit
+                    setBank(nextPlayer.startSB());                                  //платим deposit
                     break;
                 case 2:
-                    setBank(nextUnit.startBB());                                  //платим 2*deposit
+                    setBank(nextPlayer.startBB());                                  //платим 2*deposit
                     break;
             }
         }

@@ -55,7 +55,10 @@ public class Pocker {
 
         // Thread.sleep(10000);
 
-        Board.debugLogInfo();
+        while(1==1) {
+            Board.debugLogInfo();
+            Thread.sleep(10000);
+        }
     }
 
     /**
