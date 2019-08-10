@@ -2,6 +2,7 @@ package PockerRoom;
 
 import Util.ImageUtil;
 import net.sourceforge.tess4j.TesseractException;
+import org.w3c.dom.css.Rect;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -98,8 +99,10 @@ public class Board {
     /**
      * Деньги в банке(слева направо)
      */
-    public static Rectangle bankMoney  = new Rectangle(1004,352, 198,33);
+    public Rectangle bankMoney  = new Rectangle(1004,352, 198,33);
     public String bankMoneyExampleFilePatch = "d:\\Pocker\\BankMoney\\";
+
+    public Rectangle numberPeriod = new Rectangle(124,74,108,15);
 
     /**
      * Список игроков
@@ -117,14 +120,38 @@ public class Board {
         this.upCenterPlayer = new Player();
         this.upRightPlayer = new Player();
 
+        // Настройка downLeftPlayer:
+        this.downLeftPlayer.playerLoginAction = new Rectangle(56, 532,154,25);
+        this.downLeftPlayer.playerMoney = new Rectangle(56, 566, 154, 25);
+
+        // Настройка upLeftPlayer:
+        this.upLeftPlayer.playerLoginAction = new Rectangle(56, 246, 154, 25);
+        this.upLeftPlayer.playerMoney = new Rectangle(56, 278, 154, 25);
+
+        // Настройка downCenterPlayer:
+        this.downCenterPlayer.playerLoginAction = new Rectangle(616, 692, 154,25);
+        this.downCenterPlayer.playerMoney = new Rectangle(616, 726,154, 25);
+
+        // Настройка upCenterPlayer:
+        this.upCenterPlayer.playerLoginAction = new Rectangle(552, 136,154, 25);
+        this.upCenterPlayer.playerMoney = new Rectangle(552, 170, 154,25);
+
+        // Настройка downRightPlayer:
+        this.downRightPlayer.playerLoginAction = new Rectangle(1112, 534,154, 25);
+        this.downRightPlayer.playerMoney = new Rectangle(1112, 564, 154,25);
+
+        // Настройка upRightCenter:
+        this.upRightPlayer.playerLoginAction = new Rectangle(1112, 244,154, 25);
+        this.upRightPlayer.playerMoney = new Rectangle(1112, 280,154, 25);
+
         // Наполняем игроков в список:
-        ArrayList<Player> players = new ArrayList<>();
-        players.add(downLeftPlayer);
-        players.add(downCenterPlayer);
-        players.add(downRightPlayer);
-        players.add(upLeftPlayer);
-        players.add(upCenterPlayer);
-        players.add(upRightPlayer);
+        this.players = new ArrayList<>();
+        this.players.add(this.downLeftPlayer);
+        this.players.add(this.downCenterPlayer);
+        this.players.add(this.downRightPlayer);
+        this.players.add(this.upLeftPlayer);
+        this.players.add(this.upCenterPlayer);
+        this.players.add(this.upRightPlayer);
     }
 
     /**
@@ -134,11 +161,9 @@ public class Board {
         while(1==1){
             for(Player player : board.players){
                 // Скриншот поля логина и действия
-                ImageUtil.cropAndSaveImage(player.playerExampleActionFilePatch, player.playerLoginAction);
-                // Скриншот ставки
-                ImageUtil.cropAndSaveImage(player.playerExampleBetFilePatch, player.playerBet);
+                ImageUtil.cropAndSaveImage(ImageUtil.getRandomName("d:\\test\\"), player.playerLoginAction);
                 // Cкриншот денег
-                ImageUtil.cropAndSaveImage(player.playerExampleMoneyFilePatch, player.playerMoney);
+                ImageUtil.cropAndSaveImage(ImageUtil.getRandomName("d:\\test\\"), player.playerMoney);
             }
         }
     }
@@ -146,18 +171,13 @@ public class Board {
     /**
      * Метод выводит в консоль все данные которые удалось получить со стола
      */
-    public static void debugLogInfo(Board board) throws AWTException, TesseractException {
-
-        // Получаем скрин всего эерана:
-        Robot robot = new Robot();
-        BufferedImage fullScreen = robot.createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
+    public static void debugBoardLogInfo(Board board) throws AWTException, TesseractException {
 
         // Информация по игрокам на столе:
         for(Player player : board.players) {
             System.out.println();
-            System.out.print("downLeftPlayer Action/Login:" + ImageUtil.recognition(ImageUtil.cropImage(fullScreen, player.playerLoginAction)));
-            System.out.println();
-            System.out.print("downLeftPlayer Money:" + ImageUtil.recognition(ImageUtil.cropImage(fullScreen, player.playerMoney)));
+            System.out.print("Action/Login:" + ImageUtil.recognition(ImageUtil.getBonusContrast(ImageUtil.cropImage(ImageUtil.getStarWindow(), player.playerLoginAction))));
+            System.out.print("Money:" + ImageUtil.recognition(ImageUtil.getBonusContrast(ImageUtil.cropImage(ImageUtil.getStarWindow(), player.playerMoney))));
             System.out.println();
         }
 

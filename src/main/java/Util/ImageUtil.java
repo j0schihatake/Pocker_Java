@@ -4,26 +4,50 @@ import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 
 import java.awt.*;
+import java.awt.color.ColorSpace;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorConvertOp;
 import java.awt.image.PixelGrabber;
+import java.awt.image.RescaleOp;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashSet;
 import javax.imageio.ImageIO;
 
 public class ImageUtil {
+
+    public static Rectangle starWindow = new Rectangle(339,65, 1321,940);
+
+    /**
+     * Метод возвращает BufferedImage открытого стола.
+     * @return
+     * @throws AWTException
+     */
+    public static BufferedImage getStarWindow() throws AWTException {
+        // Получаем скрин всего экрана:
+        Robot robot = new Robot();
+        BufferedImage fullScreen = robot.createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
+
+        // Выделяем окно приложения
+        BufferedImage starWindow = ImageUtil.cropImage(fullScreen, ImageUtil.starWindow);
+        return starWindow;
+    }
 
     /**
      * Метод создает скриншот экрана и сохраняет в Image.
      * @throws Exception
      */
-    public static BufferedImage createScreenImage(String patchName) throws Exception
+    public static BufferedImage createScreenImage() throws Exception
     {
         Robot robot = new Robot();
         BufferedImage screenShot = robot.createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
-        ImageIO.write(screenShot, "JPG", new File(patchName));
         return screenShot;
+    }
+
+    public static void saveImageAs(BufferedImage image, String patchName) throws IOException {
+        ImageIO.write(image, "JPG", new File(patchName));
     }
 
     /**
@@ -44,10 +68,8 @@ public class ImageUtil {
      * @return
      */
     public static BufferedImage cropAndSaveImage(String patchName, Rectangle rect) throws AWTException, IOException {
-        Robot robot = new Robot();
-        BufferedImage screenShot = robot.createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
-        BufferedImage dest = screenShot.getSubimage(rect.x, rect.y, rect.width, rect.height);
-        ImageIO.write(dest, "JPG", new File(patchName));
+        BufferedImage dest = ImageUtil.getStarWindow().getSubimage(rect.x, rect.y, rect.width, rect.height);
+        ImageIO.write(ImageUtil.getBonusContrast(dest), "JPG", new File(patchName));
         return dest;
     }
 
@@ -85,6 +107,26 @@ public class ImageUtil {
         }
         System.out.print(" Lenght = " + pixels.length + " ");
         return pixels;
+    }
+
+    /**
+     * Метод преобразует изображение в черно белое:
+     * @param image
+     * @return
+     */
+    public static BufferedImage getWhiteBlackImage(BufferedImage image){
+        ColorSpace cs = ColorSpace.getInstance(ColorSpace.CS_GRAY);
+        ColorConvertOp op = new ColorConvertOp(cs, null);
+        return op.filter(image, null);
+    }
+
+    public static BufferedImage getWhiteBalckTwoColorImage(BufferedImage img){
+        return new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_BYTE_GRAY);
+    }
+
+    public static BufferedImage getBonusContrast(BufferedImage image){
+        RescaleOp rescaleOp = new RescaleOp(1.2f, 15, null);
+        return rescaleOp.filter(image, image);
     }
 
     /**
