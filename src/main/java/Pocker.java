@@ -41,7 +41,7 @@ public class Pocker {
          //subImage.setRect(270,240,130,35);
 
         // Сохранять все анализируемые области в виде изображений в папку тест
-        // ImageUtil.saveImageAs(ImageUtil.getBonusContrast(ImageUtil.createScreenImage()),"d:\\test.jpg");
+        ImageUtil.saveImageAs(ImageUtil.getStarWindow(),"d:\\test.jpg");
 
         /**
          * 1) с этим все более менее понятно каждый пиксель это -15593193
@@ -57,7 +57,6 @@ public class Pocker {
          //ImageUtil.cropAndSaveImage(patchName,subImage);
 
         // Thread.sleep(10000);
-
 
         Board one = new Board();
 
