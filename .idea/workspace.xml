@@ -3,29 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="ff9d6454-1872-45b8-9682-1f9e4a1e0405" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Pocker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Pocker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Util/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PockerRoom/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Util/ImageUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Util/ImageUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Util/VirtualDesktop/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Util/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/Pocker.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/PockerNI.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/NI/NIInput.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/NI/NINetwork$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/NI/NINetwork$learnSampleInput.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/NI/NINetwork$work_input_type.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/NI/NINetwork.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/NI/NINeuron$type_Info.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/NI/NINeuron.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/NI/NIResult.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/NI/NISample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/NI/NITactics.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/eng.traineddata" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eng.traineddata" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Расположение столов по дефолту(просто открыть стол и развернуть, стопка).png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Расположение столов по дефолту(просто открыть стол и развернуть, стопка).png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Pocker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Pocker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/PockerRoom/Cart$cartMast.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/PockerRoom/Cart$typeCart.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/PockerRoom/Cart.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/PockerRoom/Unit$role.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Util/ImageUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Util/ImageUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Util/Input/VirtualKeyboard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Util/Input/VirtualKeyboard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Util/VirtualDesktop/Table.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/eng.traineddata" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -46,8 +32,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Pocker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="55" selection-start-line="55" selection-end-line="55" />
+            <state relative-caret-position="935">
+              <caret line="55" column="22" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#inputTest#0;class#Pocker#0" />
@@ -59,13 +45,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Util/ImageUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="130" column="35" selection-start-line="130" selection-start-column="35" selection-end-line="130" selection-end-column="35" />
+            <state relative-caret-position="217">
+              <caret line="113" column="52" selection-start-line="113" selection-start-column="52" selection-end-line="113" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#createScreenImage#0;class#ImageUtil#0" />
+                <element signature="method#cropImage#0;class#ImageUtil#0" />
+                <element signature="method#cropAndSaveImage#0;class#ImageUtil#0" />
+                <element signature="method#grabPixels#0;class#ImageUtil#0" />
                 <element signature="method#getDecimal#0;class#ImageUtil#0" />
                 <element signature="method#getRandomName#0;class#ImageUtil#0" />
+                <element signature="method#recognition#0;class#ImageUtil#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Util/Input/VirtualKeyboard.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="441">
+              <caret line="33" selection-start-line="33" selection-end-line="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -74,17 +76,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="26" column="21" lean-forward="true" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+            <state relative-caret-position="115">
+              <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Util/Board.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="69" column="17" lean-forward="true" selection-start-line="69" selection-start-column="17" selection-end-line="69" selection-end-column="17" />
+            <state relative-caret-position="218">
+              <caret line="169" column="39" lean-forward="true" selection-start-line="169" selection-start-column="39" selection-end-line="169" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#7354#10421#0" />
@@ -149,9 +151,10 @@
         <option value="$PROJECT_DIR$/src/main/java/Pocker.java" />
         <option value="$PROJECT_DIR$/src/main/java/Util/VirtualDesktop/Table.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/Util/ImageUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/Util/Table.java" />
         <option value="$PROJECT_DIR$/src/main/java/Util/Board.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Util/ImageUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/PockerRoom/Board.java" />
       </list>
     </option>
   </component>
@@ -221,6 +224,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="PockerRoom" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PockerNI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PockerNI" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="Util" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -256,18 +267,19 @@
     <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Develop\Разработка на Java\PockerNI\src\main\resources" />
-      <recent name="D:\Develop\Разработка на Java\PockerNI\src\main\java\learnApp" />
-      <recent name="D:\Develop\Разработка на Java\PockerNI\src\resources" />
-      <recent name="D:\Develop\Разработка на Java\PockerNI\src\LearnApp" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Develop\Разработка на Java\PockerNI\src" />
+      <recent name="D:\Develop\Разработка на Java\PockerNI\src\main\java\NI" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="NI" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Develop\Разработка на Java\PockerNI\src" />
-      <recent name="D:\Develop\Разработка на Java\PockerNI\src\main\java\NI" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Develop\Разработка на Java\PockerNI\src\main\java" />
+      <recent name="D:\Develop\Разработка на Java\PockerNI\src\main" />
+      <recent name="D:\Develop\Разработка на Java\PockerNI\src\main\resources" />
+      <recent name="D:\Develop\Разработка на Java\PockerNI\src\main\java\learnApp" />
+      <recent name="D:\Develop\Разработка на Java\PockerNI\src\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -347,12 +359,12 @@
       <workItem from="1565119424137" duration="554000" />
       <workItem from="1565197042343" duration="13731000" />
       <workItem from="1565293879938" duration="766000" />
-      <workItem from="1565424363242" duration="5817000" />
+      <workItem from="1565424363242" duration="7208000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71852000" />
+    <option name="totallyTimeSpent" value="73243000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="74" y="-7" width="1470" height="878" extended-state="6" />
@@ -392,18 +404,6 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Util/ImageUtil.java</url>
-          <line>126</line>
-          <properties />
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/pockerRoom/UnitPlayer.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/pockerRoom/UnitSB.java" />
@@ -425,16 +425,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Util/Input/KeyBinder.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/Util/Input/VirtualKeyboard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk-12.0.1/lib/src.zip!/java.desktop/java/awt/event/InputEvent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="158">
@@ -564,15 +554,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="26" column="21" lean-forward="true" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+        <state relative-caret-position="115">
+          <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Pocker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="55" selection-start-line="55" selection-end-line="55" />
+        <state relative-caret-position="935">
+          <caret line="55" column="22" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#inputTest#0;class#Pocker#0" />
@@ -582,21 +572,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Util/ImageUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="130" column="35" selection-start-line="130" selection-start-column="35" selection-end-line="130" selection-end-column="35" />
+        <state relative-caret-position="217">
+          <caret line="113" column="52" selection-start-line="113" selection-start-column="52" selection-end-line="113" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#createScreenImage#0;class#ImageUtil#0" />
+            <element signature="method#cropImage#0;class#ImageUtil#0" />
+            <element signature="method#cropAndSaveImage#0;class#ImageUtil#0" />
+            <element signature="method#grabPixels#0;class#ImageUtil#0" />
             <element signature="method#getDecimal#0;class#ImageUtil#0" />
             <element signature="method#getRandomName#0;class#ImageUtil#0" />
+            <element signature="method#recognition#0;class#ImageUtil#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Util/Board.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Util/Input/VirtualKeyboard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="69" column="17" lean-forward="true" selection-start-line="69" selection-start-column="17" selection-end-line="69" selection-end-column="17" />
+        <state relative-caret-position="441">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="169" column="39" lean-forward="true" selection-start-line="169" selection-start-column="39" selection-end-line="169" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#7354#10421#0" />

@@ -127,7 +127,7 @@ public class ImageUtil {
         Tesseract tesseract = new Tesseract();
 
         try {
-            tesseract.setDatapath("resources/eng.trainddata");
+            tesseract.setDatapath("src\\main\\java\\eng.traineddata");
             text = tesseract.doOCR(image);
             System.out.print(text);
         } catch (TesseractException e) {

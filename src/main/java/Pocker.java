@@ -1,6 +1,6 @@
 import PockerRoom.*;
 import Util.InputUtil;
-import Util.Board;
+import PockerRoom.Board;
 
 import java.awt.*;
 import java.awt.event.InputEvent;
