@@ -1,6 +1,7 @@
 package PockerRoom;
 
 import Util.ImageUtil;
+import net.sourceforge.tess4j.TesseractException;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -30,9 +31,9 @@ public class Board {
      * Active - область где отображено что текущий игрок активен(выделение контура)
      * Diller - областьгде отображено что текущий игрок диллер(сердечко)
      */
-    public static Rectangle dlpAction = new Rectangle(330,610,176,26);
+    public static Rectangle dlpAction = new Rectangle(646,330,176,26);
     public static String dlpExampleActionFilePatch = "d:\\Pocker\\ExampleDLP\\Action\\";
-    public static Rectangle dlpMoney = new Rectangle(330,646,176,26);
+    public static Rectangle dlpMoney = new Rectangle(646,330,176,26);
     public static String dlpExampleMoneyFilePatch = "d:\\Pocker\\ExampleDLP\\Money\\";
     public static Rectangle dlpActive;
     public static String dlpExampleActiveFilePatch = "d:\\Pocker\\ExampleDLP\\Active\\";
@@ -238,7 +239,7 @@ public class Board {
     /**
      * Метод выводит в консоль все данные которые удалось получить со стола
      */
-    public static void debugLogInfo() throws AWTException {
+    public static void debugLogInfo() throws AWTException, TesseractException {
 
         // Получаем скрин всего эерана:
         Robot robot = new Robot();

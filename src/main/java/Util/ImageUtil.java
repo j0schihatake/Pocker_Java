@@ -1,6 +1,5 @@
 package Util;
 
-import net.sourceforge.tess4j.ITessAPI;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 
@@ -121,19 +120,13 @@ public class ImageUtil {
         return patchName;
     }
 
-    public static String recognition(BufferedImage image){
-        String text = "";
+    public static String recognition(BufferedImage image) throws TesseractException {
+        String text;
 
         Tesseract tesseract = new Tesseract();
-
-        try {
-            tesseract.setDatapath("src\\main\\java\\eng.traineddata");
-            text = tesseract.doOCR(image);
-            System.out.print(text);
-        } catch (TesseractException e) {
-            e.printStackTrace();
-        }
-
+        tesseract.setDatapath("tessdata/");
+        text = tesseract.doOCR(image);
+        System.out.print(text);
 
         return text;
     }

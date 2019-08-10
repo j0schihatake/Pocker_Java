@@ -1,4 +1,5 @@
 import PockerRoom.*;
+import Util.ImageUtil;
 import Util.InputUtil;
 import PockerRoom.Board;
 
@@ -32,11 +33,12 @@ public class Pocker {
      */
     public static void screen() throws Exception {
 
-        // String patchName = ImageUtil.getRandomName("d:\\Pocker\\Example0\\");
+         String patchName = ImageUtil.getRandomName("d:\\");
 
-        // Rectangle subImage = new Rectangle(0,0,128,128);
+         Rectangle subImage = new Rectangle(0,0,0,0);
+         subImage.setRect(270,240,130,35);
 
-        // ImageUtil.createScreenImage(patchName);
+         //ImageUtil.createScreenImage(patchName);
 
         /**
          * 1) с этим все более менее понятно каждый пиксель это -15593193
@@ -49,7 +51,7 @@ public class Pocker {
         // ImageUtil.imageToMassive(patchName, subImage);
 
         // тестирую создание файла кусочка изображения
-        // ImageUtil.cropAndSaveImage(patchName,subImage);
+         //ImageUtil.cropAndSaveImage(patchName,subImage);
 
         // Thread.sleep(10000);
 
