@@ -1,13 +1,10 @@
-import Util.ImageUtil;
 import PockerRoom.*;
 import Util.InputUtil;
-import Util.VirtualDesktop.Table;
+import Util.Board;
 
 import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 /**
  * Pocker - Покер.
@@ -27,7 +24,6 @@ public class Pocker {
 
         //---------------------------------Эксперименты с имитацией управления-------------------------------------
         //inputTest();
-
     }
 
     /**
@@ -56,6 +52,8 @@ public class Pocker {
         // ImageUtil.cropAndSaveImage(patchName,subImage);
 
         // Thread.sleep(10000);
+
+        Board.debugLogInfo();
     }
 
     /**

@@ -1,11 +1,12 @@
 package Util;
 
+import net.sourceforge.tess4j.ITessAPI;
+import net.sourceforge.tess4j.Tesseract;
+import net.sourceforge.tess4j.TesseractException;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.awt.image.DataBufferInt;
 import java.awt.image.PixelGrabber;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -109,47 +110,6 @@ public class ImageUtil {
     }
 
     /**
-     * Преобразование изображения в массив byte[]
-     * @param file
-     * @param section
-     * @throws IOException
-     */
-    /**
-    public static void imageToMassive(String file, Rectangle section) throws IOException {
-        File f = new File(file);
-        BufferedImage img2 = ImageIO.read(f);
-        BufferedImage img = cropImage(img2, section);
-
-        int width = img.getWidth();
-        int height = img.getHeight();
-        int bpp = getBitPerPixel(img);
-
-        System.out.print("Input image size: " + width + " x " + height + " (bpp = " + bpp + ")\n");
-
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write(img, "jpg", baos);
-        baos.flush();
-        byte[] imageInByte = baos.toByteArray();
-        //byte[] imageInByte = ((DataBufferByte) img.getData().getDataBuffer()).getData();
-        baos.close();
-        dump(imageInByte);
-    }
-
-    public static int getBitPerPixel(BufferedImage img){
-
-        return img.getColorModel().getPixelSize()/Byte.SIZE;
-    }
-
-    private static void dump(byte[] raw){
-        for(int i = 0; i < raw.length; i++ ){
-            System.out.print(raw[i] + " ");
-        }
-        System.out.println();
-        System.out.print("Lenght = " + raw.length);
-    }
-     **/
-
-    /**
      * Метод возвращает рандомизированное за счет даты название
      * @param patch пример: "d:\\Pocker\\Example0\\"
      * @return
@@ -159,5 +119,22 @@ public class ImageUtil {
         Calendar now = Calendar.getInstance();
         String patchName = patch+formatter.format(now.getTime())+".jpg";
         return patchName;
+    }
+
+    public static String recognition(BufferedImage image){
+        String text = "";
+
+        Tesseract tesseract = new Tesseract();
+
+        try {
+            tesseract.setDatapath("resources/eng.trainddata");
+            text = tesseract.doOCR(image);
+            System.out.print(text);
+        } catch (TesseractException e) {
+            e.printStackTrace();
+        }
+
+
+        return text;
     }
 }
