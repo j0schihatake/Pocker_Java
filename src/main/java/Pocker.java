@@ -68,8 +68,9 @@ public class Pocker {
             //System.out.println();
 
             // Выводим цвет пикселя:
-            //System.out.print(ImageUtil.getCollor(ImageUtil.getStarWindow(), 34,561));
-            //System.out.println();
+            //System.out.print(ImageUtil.getCollor(ImageUtil.getStarWindow(), 451,392));
+            System.out.print(one.getMastDescription(one.getPlayerCart1Mast()));
+            System.out.println();
             //ImageUtil.cropAndSaveImage(ImageUtil.getRandomName("d:\\test\\"), new Rectangle(984,548, 1, 1));
 
             Thread.sleep(100);

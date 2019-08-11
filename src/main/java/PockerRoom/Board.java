@@ -15,6 +15,26 @@ public class Board {
     //---------------------------------------------Области наблюдения--------------------------------------------
 
     /**
+     * Цвет масти черви
+     */
+    public String chervMastCollor = "-3272688";
+
+    /**
+     * Цвет масти буби
+     */
+    public String bubiMastCollor = "-15918685";
+
+    /**
+     * Цвет масти крести
+     */
+    public String krestiMastCollor = "-16747244";
+
+    /**
+     * Цвет масти пики
+     */
+    public String piciMastCollor = "-16777216";
+
+    /**
      * dlp - down left player, игрок слева внизу.
      */
     public Player downLeftPlayer;
@@ -61,42 +81,63 @@ public class Board {
      */
     public Rectangle cart0Rectangle;
     public String cart0 = "";
+    public int cart0Mast = 4;
+    public int cart0MastX;
+    public int cart0MastY;
 
     /**
      * Карта на столе 1(слева направо):
      */
     public Rectangle cart1Rectangle;
     public String cart1 = "";
+    public int cart1Mast = 4;
+    public int cart1MastX;
+    public int cart1MastY;
 
     /**
      * Карта на столе 2(слева направо):
      */
     public Rectangle cart2Rectangle;
     public String cart2 = "";
+    public int cart2Mast = 4;
+    public int cart2MastX;
+    public int cart2MastY;
 
     /**
      * Карта на столе 3(слева направо):
      */
     public Rectangle cart3Rectangle;
     public String cart3 = "";
+    public int cart3Mast = 4;
+    public int cart3MastX;
+    public int cart3MastY;
 
     /**
      * Карта на столе 4(слева направо):
      */
     public Rectangle cart4Rectangle;
     public String cart4 = "";
+    public int cart4Mast = 4;
+    public int cart4MastX;
+    public int cart4MastY;
 
     /**
      * Карта игрока 0:
      */
     public Rectangle playerCart0Rectangle;
     public String playerCart0 = "";
+    public int playerCart0Mast = 4;
+    public int playerCart0MastX;
+    public int playerCart0MastY;
 
     /**
      * Карта игрока 1:
      */
     public Rectangle playerCart1Rectangle;
     public String playerCart1 = "";
+    public int playerCart1Mast = 4;
+    public int playerCart1MastX;
+    public int playerCart1MastY;
 
     /**
      * Деньги в банке(слева направо)
@@ -128,6 +169,22 @@ public class Board {
         this.cart2Rectangle = new Rectangle(622, 355, 22,24);
         this.cart3Rectangle = new Rectangle(714, 355, 22,24);
         this.cart4Rectangle = new Rectangle(804, 355, 22,24);
+
+        // Настраиваем координаты центров для определения масти карт на столе:
+        this.cart0MastX = 451;
+        this.cart0MastY = 392;
+        this.cart1MastX = 542;
+        this.cart1MastY = 391;
+        this.cart2MastX = 633;
+        this.cart2MastY = 392;
+        this.cart3MastX = 724;
+        this.cart3MastY = 391;
+        this.cart4MastX = 815;
+        this.cart4MastY = 391;
+        this.playerCart0MastX = 592;
+        this.playerCart0MastY = 657;
+        this.playerCart1MastX = 674;
+        this.playerCart1MastY = 657;
 
         // Деньги в банке:
         this.bankMoneyRectangle = new Rectangle(656,307,158,26);
@@ -220,6 +277,119 @@ public class Board {
 
     public String getPlayerCart1() throws AWTException, TesseractException {
         return playerCart1 =  ImageUtil.recognition(ImageUtil.cropImage(ImageUtil.getStarWindow(), playerCart1Rectangle));
+    }
+
+    /**
+     * Возвращает масть крты 0(левая на столе)
+     * @return
+     * @throws AWTException
+     */
+    public int getCart0Mast() throws AWTException {
+        return cart0Mast = getMast(cart0MastX, cart0MastY);
+    }
+
+    /**
+     * Возвращает масть крты 1
+     * @return
+     * @throws AWTException
+     */
+    public int getCart1Mast() throws AWTException {
+        return cart1Mast = getMast(cart1MastX, cart1MastY);
+    }
+
+    /**
+     * Возвращает масть крты 2
+     * @return
+     * @throws AWTException
+     */
+    public int getCart2Mast() throws AWTException {
+        return cart2Mast = getMast(cart2MastX, cart2MastY);
+    }
+
+    /**
+     * Возвращает масть крты 3
+     * @return
+     */
+    public int getCart3Mast() throws AWTException {
+        return cart3Mast = getMast(cart3MastX, cart3MastY);
+    }
+
+    /**
+     * Возвращает масть крты 4
+     * @return
+     */
+    public int getCart4Mast() throws AWTException {
+        return cart4Mast = getMast(cart4MastX, cart4MastY);
+    }
+
+    /**
+     * Возвращает масть левой карты игрока
+     * @return
+     * @throws AWTException
+     */
+    public int getPlayerCart0Mast() throws AWTException {
+        return playerCart0Mast = getMast(playerCart0MastX, playerCart0MastY);
+    }
+
+    /**
+     * Возвращает масть правой карты игрока
+     * @return
+     * @throws AWTException
+     */
+    public int getPlayerCart1Mast() throws AWTException {
+        return playerCart1Mast = getMast(playerCart1MastX, playerCart1MastY);
+    }
+
+    /**
+     * Метод возвражает описание масти:
+     * @param mast
+     * @return
+     */
+    public String getMastDescription(int mast) {
+        String result = "";
+        switch(mast){
+            case 0:
+                result = "пики";
+                break;
+            case 1:
+                result = "крести";
+                break;
+            case 2:
+                result = "черви";
+                break;
+            case 3:
+                result = "бубны";
+                break;
+        }
+        return result;
+    }
+
+
+    /**
+     * Метод возвращает масть пикселя:
+     * Масть карты определяет ее итоговое значение value следующим образом(для удобства работы с сетью) mast * 100 + value:
+     *  * mast: spades-пики = 0, clubs-трефы = 1, hearts-черви = 2, diamonds-бубны = 3
+     * @return
+     */
+    public int getMast(int x, int y) throws AWTException {
+        int mast = 4;
+
+        String pixel = String.valueOf(ImageUtil.getCollor(ImageUtil.getStarWindow(), x, y));
+
+        if(pixel.compareTo(piciMastCollor) == 0){
+            mast = 0;
+        }
+        if(pixel.compareTo(krestiMastCollor) == 0){
+            mast = 1;
+        }
+        if(pixel.compareTo(chervMastCollor) == 0){
+            mast = 2;
+        }
+        if(pixel.compareTo(bubiMastCollor) == 0){
+            mast = 3;
+        }
+
+        return mast;
     }
 
     /**
