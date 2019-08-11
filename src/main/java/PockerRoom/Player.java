@@ -4,7 +4,6 @@ import Util.ImageUtil;
 import net.sourceforge.tess4j.TesseractException;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 /**
  * Участник игры.
@@ -24,6 +23,14 @@ public class Player {
      *      * 3 - n...
      */
     public int role = 0;
+
+    /**
+     * Активен ли текущий игрок:
+     */
+    public boolean active = false;
+    public String playerActive = "-1";
+    public int pActiveX;
+    public int pActiveY;
 
     /**
      * Action - область где отражено выполненное игроком действие(надпись)/Login
@@ -114,6 +121,15 @@ public class Player {
      */
     public Boolean isBB(){
         return role == 2;
+    }
+
+    /**
+     * Метод определяет является ли текущий игрок активным в настоящее время:
+     * @return
+     */
+    public Boolean isActive() throws AWTException {
+        String pixel = String.valueOf(ImageUtil.getCollor(ImageUtil.getStarWindow(), pActiveX, pActiveY));
+        return  pixel.compareTo(playerActive) == 0 ? true : false;
     }
 
     /**

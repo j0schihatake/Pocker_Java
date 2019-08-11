@@ -416,7 +416,7 @@ public class Board {
         upRightPlayer.pDillerX = 1040;
         upRightPlayer.pDillerY = 336;
 
-        // Настройка координат для проверкив игре игрокили нет:
+        // Настройка координат для проверки в игре игрок или нет:
         downLeftPlayer.pInGameX = 135;
         downLeftPlayer.pInGameY = 480;
         downLeftPlayer.playerInGame = "-1644826";
@@ -441,6 +441,30 @@ public class Board {
         upRightPlayer.pInGameY = 193;
         upRightPlayer.playerInGame = "-1644826";
 
+        // Настройка координат для проверки активен ли игрок или нет:
+        downLeftPlayer.pActiveX = 34;
+        downLeftPlayer.pActiveY = 561;
+        downLeftPlayer.playerActive = "-7434610";
+
+        downCenterPlayer.pActiveX = 529;
+        downCenterPlayer.pActiveY = 722;
+        downCenterPlayer.playerActive = "-6052957";
+
+        downRightPlayer.pActiveX = 1027;
+        downRightPlayer.pActiveY = 562;
+        downRightPlayer.playerActive = "-5460820";
+
+        upLeftPlayer.pActiveX = 35;
+        upLeftPlayer.pActiveY = 275;
+        upLeftPlayer.playerActive = "-6381922";
+
+        upCenterPlayer.pActiveX = 529;
+        upCenterPlayer.pActiveY = 165;
+        upCenterPlayer.playerActive = "-6052957";
+
+        upRightPlayer.pActiveX = 1027;
+        upRightPlayer.pActiveY = 274;
+        upRightPlayer.playerActive = "-6052957";
 
         // Наполняем игроков в список:
         players = new ArrayList<>();
