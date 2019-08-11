@@ -416,6 +416,32 @@ public class Board {
         upRightPlayer.pDillerX = 1040;
         upRightPlayer.pDillerY = 336;
 
+        // Настройка координат для проверкив игре игрокили нет:
+        downLeftPlayer.pInGameX = 135;
+        downLeftPlayer.pInGameY = 480;
+        downLeftPlayer.playerInGame = "-1644826";
+
+        downCenterPlayer.pInGameX = 610;
+        downCenterPlayer.pInGameY = 640;
+        downCenterPlayer.playerInGame = "-1644826";
+
+        downRightPlayer.pInGameX = 1115;
+        downRightPlayer.pInGameY = 480;
+        downRightPlayer.playerInGame = "-1644826";
+
+        upLeftPlayer.pInGameX = 165;
+        upLeftPlayer.pInGameY = 214;
+        upLeftPlayer.playerInGame = "-1644826";
+
+        upCenterPlayer.pInGameX = 615;
+        upCenterPlayer.pInGameY = 83;
+        upCenterPlayer.playerInGame = "-1644826";
+
+        upRightPlayer.pInGameX = 1110;
+        upRightPlayer.pInGameY = 193;
+        upRightPlayer.playerInGame = "-1644826";
+
+
         // Наполняем игроков в список:
         players = new ArrayList<>();
         players.add(downLeftPlayer);
@@ -467,11 +493,13 @@ public class Board {
          // Информация по игрокам на столе:
          for(Player player : players) {
             System.out.println();
-            System.out.print("Action/Login:" + player.getPlayerLogin());
+            //System.out.print("Action/Login:" + player.getPlayerLogin());
             System.out.print("Money:" + player.getPlayerMoney());
+            //System.out.print(player.playerLogin + " InGame:" + player.isPlayerInGame());
             System.out.println();
          }
 
+         /*
         System.out.print("Cart0:" + getCart0());
         System.out.print("Cart1:" + getCart2());
         System.out.print("Cart2:" + getCart3());
@@ -490,5 +518,6 @@ public class Board {
             System.out.print("Diller: " + diller.playerLogin);
             System.out.println();
         }
+          */
     }
 }

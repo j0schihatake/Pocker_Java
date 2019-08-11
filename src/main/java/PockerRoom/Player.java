@@ -135,7 +135,7 @@ public class Player {
     }
 
     public String getPlayerMoney() throws AWTException, TesseractException {
-        return  pMoney = ImageUtil.recognition(ImageUtil.getBonusContrast(ImageUtil.cropImage(ImageUtil.getStarWindow(), playerLoginActionRectangle)));
+        return  pMoney = ImageUtil.recognition(ImageUtil.getBonusContrast(ImageUtil.cropImage(ImageUtil.getStarWindow(), playerMoneyRectangle)));
     }
 
     /**

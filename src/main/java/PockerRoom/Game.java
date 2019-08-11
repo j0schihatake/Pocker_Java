@@ -105,7 +105,7 @@ public class Game {
             Player nextPlayer = new Player();
             nextPlayer.role = i;
             gamePlayer.add(nextPlayer);
-            nextPlayer.init();
+            //nextPlayer.init();
 
             switch(i){
                 case 1:
