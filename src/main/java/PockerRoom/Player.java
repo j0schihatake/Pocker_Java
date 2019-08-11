@@ -1,5 +1,8 @@
 package PockerRoom;
 
+import Util.ImageUtil;
+import net.sourceforge.tess4j.TesseractException;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -14,16 +17,6 @@ public class Player {
     public int money = 0;
 
     /**
-     * Являемся ли мы данным игроком.
-     */
-    public boolean isPlayer = false;
-
-    /**
-     * Карты игрока:
-     */
-    public ArrayList<Integer> unitCard;
-
-    /**
      * Роль участника в игре:
      *      * 0 - диллер
      *      * 1 - MB
@@ -35,42 +28,50 @@ public class Player {
     /**
      * Action - область где отражено выполненное игроком действие(надпись)/Login
      */
-    public Rectangle playerLoginAction;
+    public Rectangle playerLoginActionRectangle;
 
-    public String playerExampleActionFilePatch = "d:\\Pocker\\ExampleDLP\\Action\\";
+    public String playerLogin;
+
+    public String playerExampleLoginActionFilePatch = "d:\\Pocker\\ExampleDLP\\Action\\";
 
     /**
      * Money - область где отображены средства игрока(цифра)
      */
-    public Rectangle playerMoney;
+    public Rectangle playerMoneyRectangle;
+
+    public String pMoney;
 
     public String playerExampleMoneyFilePatch = "d:\\Pocker\\ExampleDLP\\Money\\";
 
     /**
      * Active - область где отображено что текущий игрок активен(выделение контура)
      */
-    public Rectangle playerActive;
+    public Rectangle playerActiveRectangle;
 
     public String playerExampleActiveFilePatch = "d:\\Pocker\\ExampleDLP\\Active\\";
 
     /**
      * Diller - областьгде отображено что текущий игрок диллер(сердечко)
      */
-    public Rectangle playerDiller;
+    public String playerDiller = "-1";
+    public int pDillerX;
+    public int pDillerY;
+
+    /**
+     * Проверяем наличие карт в руках игрока:
+     */
+    public String playerInGame = "-1";
+    public int pInGameX;
+    public int pInGameY;
 
     public String playerExampleDillerFilePatch = "d:\\Pocker\\ExampleDLP\\Diller\\";
 
     /**
      * Ставка игрока
      */
-    public static Rectangle playerBet;
+    public Rectangle playerBetRectangle;
 
-    public static String playerExampleBetFilePatch = "d:\\Pocker\\ExampleDLP\\Rect\\";
-
-    /**
-     * Первоначальная подготовка игрока:
-     */
-    public void init(){}
+    public String playerExampleBetFilePatch = "d:\\Pocker\\ExampleDLP\\Bet\\";
 
     /**
      * Игрок начинает игру как SB(первая ставка x1)
@@ -88,6 +89,53 @@ public class Player {
     public int startBB(){
         this.money = money - Game.deposit*2;
         return Game.deposit*2;
+    }
+
+    /**
+     * Метод определяет является ли игрок диллером по цвету пикселя в центре значка:
+     * @return true = да
+     */
+    public Boolean isDiller() throws AWTException {
+        String pixel = String.valueOf(ImageUtil.getCollor(ImageUtil.getStarWindow(), pDillerX, pDillerY));
+        return  pixel.compareTo(playerDiller) == 0 ? true : false;
+    }
+
+    /**
+     * Метод возвращает true если игрок является MB:
+     * @return
+     */
+    public Boolean isMB(){
+        return role == 1;
+    }
+
+    /**
+     * Метод возвращает true если игрок является BB:
+     * @return
+     */
+    public Boolean isBB(){
+        return role == 2;
+    }
+
+    /**
+     * Метод проверяет учавствует ли игрок в игре(по наличию карт в его руках):
+     * @return true = да
+     * @throws AWTException
+     */
+    public Boolean isPlayerInGame() throws AWTException {
+        String pixel = String.valueOf(ImageUtil.getCollor(ImageUtil.getStarWindow(), pInGameX, pInGameY));
+        return  pixel.compareTo(playerInGame) == 0 ? true : false;
+    }
+
+    /**
+     * Метод обновляет значение логина игрока(считывая со стола)
+     * @return
+     */
+    public String getPlayerLogin() throws AWTException, TesseractException {
+        return playerLogin = ImageUtil.recognition(ImageUtil.getBonusContrast(ImageUtil.cropImage(ImageUtil.getStarWindow(), playerLoginActionRectangle)));
+    }
+
+    public String getPlayerMoney() throws AWTException, TesseractException {
+        return  pMoney = ImageUtil.recognition(ImageUtil.getBonusContrast(ImageUtil.cropImage(ImageUtil.getStarWindow(), playerLoginActionRectangle)));
     }
 
     /**

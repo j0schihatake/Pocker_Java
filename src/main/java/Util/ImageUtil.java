@@ -13,7 +13,6 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.HashSet;
 import javax.imageio.ImageIO;
 
 public class ImageUtil {
@@ -149,6 +148,45 @@ public class ImageUtil {
         }
         return decimal;
     }
+
+    /**
+     * Метод возвращает цвет пикселя
+     * @param image
+     */
+    public static int getCollor(BufferedImage image, int x, int y){
+        return image.getRGB(x,y);
+    }
+
+    /**
+     * Метод выполняет замену цвета в изображении
+     */
+    public void replaceColorInImage(){
+        try {
+            BufferedImage img = ImageIO.read(new File("8bit.gif"));
+            BufferedImage replaced = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_ARGB);
+            Color match = new Color(209, 167, 86);
+            Color with = new Color(0, 255, 0);
+
+            for (int x = 0; x < img.getWidth(); x++) {
+                for (int y = 0; y < img.getHeight(); y++) {
+                    int pixel = img.getRGB(x, y);
+                    if (pixel == match.getRGB()) {
+                        System.out.println("Same Color Detected!");
+                        replaced.setRGB(x, y, with.getRGB());
+                    } else {
+                        replaced.setRGB(x, y, pixel);
+                    }
+                }
+            }
+
+            ImageIO.write(replaced, "png", new File("replaced.png"));
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
 
     /**
      * Метод возвращает рандомизированное за счет даты название

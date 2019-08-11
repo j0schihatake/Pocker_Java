@@ -5,8 +5,12 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Pocker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Pocker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/PockerRoom/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PockerRoom/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PockerRoom/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PockerRoom/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Util/ImageUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Util/ImageUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Pocker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Pocker.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/PockerRoom/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/PockerRoom/Board.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/PockerRoom/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/PockerRoom/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Util/ImageUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Util/ImageUtil.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -27,8 +31,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Pocker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="64" column="27" lean-forward="true" selection-start-line="64" selection-start-column="27" selection-end-line="64" selection-end-column="27" />
+            <state relative-caret-position="257">
+              <caret line="64" column="36" lean-forward="true" selection-start-line="64" selection-start-column="36" selection-end-line="64" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#inputTest#0;class#Pocker#0" />
@@ -40,14 +44,16 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Util/ImageUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="71" column="54" lean-forward="true" selection-start-line="71" selection-start-column="22" selection-end-line="71" selection-end-column="54" />
+            <state relative-caret-position="1349">
+              <caret line="202" column="25" selection-start-line="202" selection-start-column="25" selection-end-line="202" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#getStarWindow#0;class#ImageUtil#0" />
                 <element signature="method#cropImage#0;class#ImageUtil#0" />
                 <element signature="method#grabPixels#0;class#ImageUtil#0" />
                 <element signature="method#getDecimal#0;class#ImageUtil#0" />
+                <element signature="e#5278#5279#0" expanded="true" />
+                <element signature="e#5307#5308#0" expanded="true" />
                 <element signature="method#getRandomName#0;class#ImageUtil#0" />
               </folding>
             </state>
@@ -57,10 +63,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="205" column="99" lean-forward="true" selection-start-line="205" selection-start-column="99" selection-end-line="205" selection-end-column="99" />
+            <state relative-caret-position="539">
+              <caret line="434" column="27" selection-start-line="434" selection-start-column="27" selection-end-line="434" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#updateAllCart#0;class#Board#0" />
+                <element signature="method#getDillerBoard#0;class#Board#0" />
+                <element signature="e#7678#7839#0" />
+                <element signature="e#9678#9985#0" />
+                <element signature="e#9979#10282#0" />
+                <element signature="e#10378#10551#0" />
+                <element signature="method#makeExampleFolder#0;class#Board#0" />
               </folding>
             </state>
           </provider>
@@ -69,10 +82,14 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-929">
-              <caret line="37" column="21" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="21" />
+            <state relative-caret-position="476">
+              <caret line="115" column="25" lean-forward="true" selection-start-line="115" selection-start-column="25" selection-end-line="115" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2577#2578#0" expanded="true" />
+                <element signature="e#2609#2610#0" expanded="true" />
+                <element signature="e#2721#2722#0" expanded="true" />
+                <element signature="e#2753#2754#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -135,10 +152,10 @@
         <option value="$PROJECT_DIR$/src/main/java/Util/Board.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/PockerRoom/Unit.java" />
-        <option value="$PROJECT_DIR$/src/main/java/PockerRoom/Player.java" />
         <option value="$PROJECT_DIR$/src/main/java/Util/test.java" />
         <option value="$PROJECT_DIR$/src/main/java/Util/ImageUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/Pocker.java" />
+        <option value="$PROJECT_DIR$/src/main/java/PockerRoom/Player.java" />
         <option value="$PROJECT_DIR$/src/main/java/PockerRoom/Board.java" />
       </list>
     </option>
@@ -168,8 +185,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="295" />
-    <option name="y" value="143" />
+    <option name="x" value="73" />
+    <option name="y" value="-8" />
     <option name="width" value="1285" />
     <option name="height" value="752" />
   </component>
@@ -178,8 +195,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -235,10 +252,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="tessdata" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PockerNI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
@@ -355,16 +368,18 @@
       <workItem from="1565424363242" duration="7444000" />
       <workItem from="1565435402795" duration="9772000" />
       <workItem from="1565458509074" duration="17952000" />
+      <workItem from="1565505933558" duration="11357000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101203000" />
+    <option name="totallyTimeSpent" value="112560000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="73" y="-8" width="1855" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.73592496" visible="true" weight="0.19164345" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.73592496" visible="true" weight="0.19387187" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -372,7 +387,7 @@
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" sideWeight="0.26407507" side_tool="true" weight="0.2641243" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32917964" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32917964" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.2554517" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.32502595" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -397,6 +412,18 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/PockerRoom/Board.java</url>
+          <line>441</line>
+          <properties />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/pockerRoom/UnitPlayer.java" />
@@ -578,16 +605,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-929">
-          <caret line="37" column="21" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/awt/Graphics.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="223">
@@ -595,18 +612,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Util/test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="52" column="54" lean-forward="true" selection-start-line="52" selection-start-column="54" selection-end-line="52" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#120#121#0" expanded="true" />
-            <element signature="e#167#168#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Util/test.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/awt/image/BufferedImage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
@@ -616,14 +622,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Util/ImageUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="71" column="54" lean-forward="true" selection-start-line="71" selection-start-column="22" selection-end-line="71" selection-end-column="54" />
+        <state relative-caret-position="1349">
+          <caret line="202" column="25" selection-start-line="202" selection-start-column="25" selection-end-line="202" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#getStarWindow#0;class#ImageUtil#0" />
             <element signature="method#cropImage#0;class#ImageUtil#0" />
             <element signature="method#grabPixels#0;class#ImageUtil#0" />
             <element signature="method#getDecimal#0;class#ImageUtil#0" />
+            <element signature="e#5278#5279#0" expanded="true" />
+            <element signature="e#5307#5308#0" expanded="true" />
             <element signature="method#getRandomName#0;class#ImageUtil#0" />
           </folding>
         </state>
@@ -631,8 +639,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Pocker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="64" column="27" lean-forward="true" selection-start-line="64" selection-start-column="27" selection-end-line="64" selection-end-column="27" />
+        <state relative-caret-position="257">
+          <caret line="64" column="36" lean-forward="true" selection-start-line="64" selection-start-column="36" selection-end-line="64" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#inputTest#0;class#Pocker#0" />
@@ -640,12 +648,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Board.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="205" column="99" lean-forward="true" selection-start-line="205" selection-start-column="99" selection-end-line="205" selection-end-column="99" />
+        <state relative-caret-position="476">
+          <caret line="115" column="25" lean-forward="true" selection-start-line="115" selection-start-column="25" selection-end-line="115" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2577#2578#0" expanded="true" />
+            <element signature="e#2609#2610#0" expanded="true" />
+            <element signature="e#2721#2722#0" expanded="true" />
+            <element signature="e#2753#2754#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/PockerRoom/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="539">
+          <caret line="434" column="27" selection-start-line="434" selection-start-column="27" selection-end-line="434" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#updateAllCart#0;class#Board#0" />
+            <element signature="method#getDillerBoard#0;class#Board#0" />
+            <element signature="e#7678#7839#0" />
+            <element signature="e#9678#9985#0" />
+            <element signature="e#9979#10282#0" />
+            <element signature="e#10378#10551#0" />
+            <element signature="method#makeExampleFolder#0;class#Board#0" />
           </folding>
         </state>
       </provider>

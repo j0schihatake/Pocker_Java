@@ -61,8 +61,14 @@ public class Pocker {
         Board one = new Board();
 
         while(1==1) {
-            Board.debugBoardLogInfo(one);
-            one.makeExampleFolder(one);
+            one.debugBoardLogInfo();
+            //one.makeExampleFolder();
+
+            // Выводим цвет пикселя:
+            //System.out.print(ImageUtil.getCollor(ImageUtil.getStarWindow(), 340,547));
+            //System.out.println();
+            //ImageUtil.cropAndSaveImage(ImageUtil.getRandomName("d:\\test\\"), new Rectangle(984,548, 1, 1));
+
             Thread.sleep(100);
         }
 
