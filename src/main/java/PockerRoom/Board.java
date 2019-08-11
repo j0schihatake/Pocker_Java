@@ -35,6 +35,11 @@ public class Board {
     public String piciMastCollor = "-16777216";
 
     /**
+     * Цвет при наличии карты(белый)
+     */
+    public String cartEnabledCollor = "-1";
+
+    /**
      * dlp - down left player, игрок слева внизу.
      */
     public Player downLeftPlayer;
@@ -77,6 +82,15 @@ public class Board {
     public String cartExampleFilePatch = "d:\\Pocker\\ExampleCART\\";
 
     /**
+     * Этапы игры:
+     * 0 торговля
+     * 1 второй этап
+     * 2 терн
+     * 3 ривер
+     */
+    public int stage = 0;
+
+    /**
      * Карта на столе 0(слева направо):
      */
     public Rectangle cart0Rectangle;
@@ -84,6 +98,9 @@ public class Board {
     public int cart0Mast = 4;
     public int cart0MastX;
     public int cart0MastY;
+    public Boolean cart0Active = false;
+    public int cart0ActiveX;
+    public int cart0ActiveY;
 
     /**
      * Карта на столе 1(слева направо):
@@ -93,6 +110,9 @@ public class Board {
     public int cart1Mast = 4;
     public int cart1MastX;
     public int cart1MastY;
+    public Boolean cart1Active = false;
+    public int cart1ActiveX;
+    public int cart1ActiveY;
 
     /**
      * Карта на столе 2(слева направо):
@@ -102,6 +122,9 @@ public class Board {
     public int cart2Mast = 4;
     public int cart2MastX;
     public int cart2MastY;
+    public Boolean cart2Active = false;
+    public int cart2ActiveX;
+    public int cart2ActiveY;
 
     /**
      * Карта на столе 3(слева направо):
@@ -111,6 +134,9 @@ public class Board {
     public int cart3Mast = 4;
     public int cart3MastX;
     public int cart3MastY;
+    public Boolean cart3Active = false;
+    public int cart3ActiveX;
+    public int cart3ActiveY;
 
     /**
      * Карта на столе 4(слева направо):
@@ -120,6 +146,9 @@ public class Board {
     public int cart4Mast = 4;
     public int cart4MastX;
     public int cart4MastY;
+    public Boolean cart4Active = false;
+    public int cart4ActiveX;
+    public int cart4ActiveY;
 
     /**
      * Карта игрока 0:
@@ -186,6 +215,18 @@ public class Board {
         this.playerCart1MastX = 674;
         this.playerCart1MastY = 657;
 
+        // Настройка координат пикселей для определения присутствия карт на столе:
+        this.cart0ActiveX = 499;
+        this.cart0ActiveY = 349;
+        this.cart1ActiveX = 590;
+        this.cart1ActiveY = 349;
+        this.cart2ActiveX = 680;
+        this.cart2ActiveY = 349;
+        this.cart3ActiveX = 771;
+        this.cart3ActiveY = 349;
+        this.cart4ActiveX = 864;
+        this.cart4ActiveY = 349;
+
         // Деньги в банке:
         this.bankMoneyRectangle = new Rectangle(656,307,158,26);
 
@@ -215,6 +256,54 @@ public class Board {
         getBoardName();
         getPartyNumber();
         return this;
+    }
+
+    /**
+     * Возвращает текущий этап игры:
+     *      * Этапы игры:
+     *      * 0 торговля
+     *      * 1 второй этап
+     *      * 2 терн
+     *      * 3 ривер
+     * @return
+     */
+    public int getGameStage() throws AWTException {
+        int result = 0;
+
+        if(isActiveCart0()){
+            result = 1;
+            if(isActiveCart3()){
+                result = 2;
+                if(isActiveCart4()){
+                    result = 3;
+                }
+            }
+        }
+        return stage = result;
+    }
+
+    /**
+     * Возвращает описание текущего этапа игры:
+     * @param stage
+     * @return
+     */
+    public String getStageDescription(int stage){
+        String result = "";
+        switch(stage){
+            case 0:
+                result = "Торговля";
+                break;
+            case 1:
+                result = "Второй этап с раздачей 3х карт";
+                break;
+            case 2:
+                result = "Терн";
+                break;
+            case 3:
+                result = "Ривер";
+                break;
+        }
+        return result;
     }
 
     /**
@@ -280,7 +369,7 @@ public class Board {
     }
 
     /**
-     * Возвращает масть крты 0(левая на столе)
+     * Возвращает масть карты 0(левая на столе)
      * @return
      * @throws AWTException
      */
@@ -289,7 +378,7 @@ public class Board {
     }
 
     /**
-     * Возвращает масть крты 1
+     * Возвращает масть карты 1
      * @return
      * @throws AWTException
      */
@@ -298,7 +387,7 @@ public class Board {
     }
 
     /**
-     * Возвращает масть крты 2
+     * Возвращает масть карты 2
      * @return
      * @throws AWTException
      */
@@ -307,7 +396,7 @@ public class Board {
     }
 
     /**
-     * Возвращает масть крты 3
+     * Возвращает масть карты 3
      * @return
      */
     public int getCart3Mast() throws AWTException {
@@ -315,7 +404,7 @@ public class Board {
     }
 
     /**
-     * Возвращает масть крты 4
+     * Возвращает масть карты 4
      * @return
      */
     public int getCart4Mast() throws AWTException {
@@ -341,6 +430,51 @@ public class Board {
     }
 
     /**
+     * Возвращает присутствие карты 0 на столе:
+     * @return
+     * @throws AWTException
+     */
+    public boolean isActiveCart0() throws AWTException {
+        return cart0Active = isActiveCart(cart0ActiveX, cart0ActiveY);
+    }
+
+    /**
+     * Возвращает присутствие карты 1 на столе:
+     * @return
+     * @throws AWTException
+     */
+    public boolean isActiveCart1() throws AWTException {
+        return cart1Active = isActiveCart(cart1ActiveX, cart1ActiveY);
+    }
+
+    /**
+     * Возвращает присутствие карты 2 на столе:
+     * @return
+     * @throws AWTException
+     */
+    public boolean isActiveCart2() throws AWTException {
+        return cart2Active = isActiveCart(cart2ActiveX, cart2ActiveY);
+    }
+
+    /**
+     * Возвращает присутствие карты 3 на столе:
+     * @return
+     * @throws AWTException
+     */
+    public boolean isActiveCart3() throws AWTException {
+        return cart3Active = isActiveCart(cart3ActiveX, cart3ActiveY);
+    }
+
+    /**
+     * Возвращает присутствие карты 4 на столе:
+     * @return
+     * @throws AWTException
+     */
+    public boolean isActiveCart4() throws AWTException {
+        return cart4Active = isActiveCart(cart4ActiveX, cart4ActiveY);
+    }
+
+    /**
      * Метод возвражает описание масти:
      * @param mast
      * @return
@@ -363,7 +497,6 @@ public class Board {
         }
         return result;
     }
-
 
     /**
      * Метод возвращает масть пикселя:
@@ -393,6 +526,15 @@ public class Board {
     }
 
     /**
+     * Возвращает активность карты:
+     * @throws AWTException
+     */
+    public Boolean isActiveCart(int x, int y) throws AWTException {
+        String pixel = String.valueOf(ImageUtil.getCollor(ImageUtil.getStarWindow(), x, y));
+        return  pixel.compareTo(cartEnabledCollor) == 0 ? true : false;
+    }
+
+    /**
      * Метод выполняет обновление всех известных нас толе карт включая карты игрока.
      * @throws AWTException
      * @throws TesseractException
@@ -406,6 +548,15 @@ public class Board {
 
         getPlayerCart0();
         getPlayerCart1();
+
+        getCart0Mast();
+        getCart1Mast();
+        getCart2Mast();
+        getCart3Mast();
+        getCart4Mast();
+
+        getPlayerCart0Mast();
+        getPlayerCart1Mast();
     }
 
     /**
