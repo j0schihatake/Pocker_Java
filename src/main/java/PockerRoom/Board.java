@@ -1,6 +1,8 @@
 package PockerRoom;
 
+import NI.Components.NISample;
 import Util.ImageUtil;
+import Util.StringUtil;
 import net.sourceforge.tess4j.TesseractException;
 import java.awt.*;
 import java.io.IOException;
@@ -11,6 +13,11 @@ import java.util.ArrayList;
  * Чтобы облегчить жизнь, привязываемся не к конкретной позиции а к соотношениям(высоты к ширине).
  */
 public class Board {
+
+    Board lastBoardState = null;
+
+    public static String login = "Hatake";
+    public static int maxBoardCount = 3;
 
     //---------------------------------------------Области наблюдения--------------------------------------------
 
@@ -68,6 +75,11 @@ public class Board {
      * urp - up right player, игрок справа вверху
      */
     public Player upRightPlayer;
+
+    /**
+     * Максимальный стек
+     */
+    public String maxStek;
 
     /**
      * Название стола:
@@ -261,10 +273,10 @@ public class Board {
     /**
      * Возвращает текущий этап игры:
      *      * Этапы игры:
-     *      * 0 торговля
-     *      * 1 второй этап
-     *      * 2 терн
-     *      * 3 ривер
+     *      * 0 Префлоп/торговля
+     *      * 1 Флоп
+     *      * 2 Терн
+     *      * 3 Ривер
      * @return
      */
     public int getGameStage() throws AWTException {
@@ -291,10 +303,10 @@ public class Board {
         String result = "";
         switch(stage){
             case 0:
-                result = "Торговля";
+                result = "Префлоп/торговля";
                 break;
             case 1:
-                result = "Второй этап с раздачей 3х карт";
+                result = "Флоп";
                 break;
             case 2:
                 result = "Терн";
@@ -369,6 +381,23 @@ public class Board {
     }
 
     /**
+     * Метод проверяет сидим ли мы за столом(Без полного распознавания стола);
+     * @return
+     */
+    public static Boolean playerInGame() throws TesseractException, AWTException {
+        String corLogin = StringUtil.correctTesserractString(ImageUtil.recognition(ImageUtil.getBonusContrast(ImageUtil.cropImage(ImageUtil.getStarWindow(), new Rectangle(616, 692, 154,25)))),6);
+        Boolean result = Board.login.equals(corLogin);
+        System.out.print("corLogin = " + corLogin + ", result = " + Board.login.equals(corLogin));
+        System.out.println();
+        return result;
+    }
+
+    public static Boolean playerActive() throws AWTException {
+        String pixel = String.valueOf(ImageUtil.getCollor(ImageUtil.getStarWindow(), 529, 722));
+        return  pixel.equals("-6052957");
+    }
+
+    /**
      * Возвращает масть карты 0(левая на столе)
      * @return
      * @throws AWTException
@@ -380,6 +409,7 @@ public class Board {
     /**
      * Возвращает масть карты 1
      * @return
+     * 3
      * @throws AWTException
      */
     public int getCart1Mast() throws AWTException {
@@ -509,16 +539,16 @@ public class Board {
 
         String pixel = String.valueOf(ImageUtil.getCollor(ImageUtil.getStarWindow(), x, y));
 
-        if(pixel.compareTo(piciMastCollor) == 0){
+        if(pixel.equals(piciMastCollor)){
             mast = 0;
         }
-        if(pixel.compareTo(krestiMastCollor) == 0){
+        if(pixel.equals(krestiMastCollor)){
             mast = 1;
         }
-        if(pixel.compareTo(chervMastCollor) == 0){
+        if(pixel.equals(chervMastCollor)){
             mast = 2;
         }
-        if(pixel.compareTo(bubiMastCollor) == 0){
+        if(pixel.equals(bubiMastCollor)){
             mast = 3;
         }
 
@@ -531,7 +561,7 @@ public class Board {
      */
     public Boolean isActiveCart(int x, int y) throws AWTException {
         String pixel = String.valueOf(ImageUtil.getCollor(ImageUtil.getStarWindow(), x, y));
-        return  pixel.compareTo(cartEnabledCollor) == 0 ? true : false;
+        return  pixel.equals(cartEnabledCollor);
     }
 
     /**
@@ -811,7 +841,6 @@ public class Board {
      */
     public void makeExampleFolder() throws IOException, AWTException {
         while(1==1){
-
             for(Player player : players){
                 // Скриншот поля логина и действия
                 ImageUtil.cropAndSaveImage(player.playerExampleLoginActionFilePatch, player.playerLoginActionRectangle);
@@ -837,11 +866,11 @@ public class Board {
 
          // Информация по игрокам на столе:
          for(Player player : players) {
-            System.out.println();
+            //System.out.println();
             //System.out.print("Action/Login:" + player.getPlayerLogin());
-            System.out.print("Money:" + player.getPlayerMoney());
+            //System.out.print("Money:" + player.getPlayerMoney());
             //System.out.print(player.playerLogin + " InGame:" + player.isPlayerInGame());
-            System.out.println();
+            //System.out.println();
          }
 
          /*

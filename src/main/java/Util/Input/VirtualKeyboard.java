@@ -18,8 +18,8 @@ public class VirtualKeyboard extends Robot {
     public void pressKey(int keyEvent){
         try {
             Robot rb = new Robot();
-            rb.keyPress(KeyEvent.VK_A);
-            rb.keyRelease(KeyEvent.VK_A);
+            rb.keyPress(keyEvent);
+            rb.keyRelease(keyEvent);
         } catch (AWTException ex) {
             System.err.println("Robot error");
         }

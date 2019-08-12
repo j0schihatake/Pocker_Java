@@ -24,6 +24,9 @@ public class Player {
      */
     public int role = 0;
 
+    public String action;
+    public int playerAction;
+
     /**
      * Активен ли текущий игрок:
      */
@@ -104,7 +107,7 @@ public class Player {
      */
     public Boolean isDiller() throws AWTException {
         String pixel = String.valueOf(ImageUtil.getCollor(ImageUtil.getStarWindow(), pDillerX, pDillerY));
-        return  pixel.compareTo(playerDiller) == 0 ? true : false;
+        return  pixel.equals(playerDiller);
     }
 
     /**
@@ -129,7 +132,7 @@ public class Player {
      */
     public Boolean isActive() throws AWTException {
         String pixel = String.valueOf(ImageUtil.getCollor(ImageUtil.getStarWindow(), pActiveX, pActiveY));
-        return  pixel.compareTo(playerActive) == 0 ? true : false;
+        return  pixel.equals(playerActive);
     }
 
     /**
@@ -139,7 +142,7 @@ public class Player {
      */
     public Boolean isPlayerInGame() throws AWTException {
         String pixel = String.valueOf(ImageUtil.getCollor(ImageUtil.getStarWindow(), pInGameX, pInGameY));
-        return  pixel.compareTo(playerInGame) == 0 ? true : false;
+        return  pixel.equals(playerInGame);
     }
 
     /**
