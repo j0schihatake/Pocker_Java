@@ -28,6 +28,16 @@ public class Player {
     public int playerAction;
 
     /**
+     * Шанс на улучшение ситуации со следующей раздачей
+     */
+    public int probabilityOfImprovment;
+
+    /**
+     * Выгода со стола(банк)
+     */
+    public int benefitBoard;
+
+    /**
      * Активен ли текущий игрок:
      */
     public boolean active = false;

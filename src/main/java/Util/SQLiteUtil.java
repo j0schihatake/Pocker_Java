@@ -16,6 +16,11 @@ public class SQLiteUtil {
      * conn.CloseDB();
      */
 
+    /**
+     * Версия БД версия DB чтобы не потерять примеры при изменениях
+     */
+    public static int bdVersion = 0;
+
     public static Connection conn;
     public static Statement statmt;
     public static ResultSet resSet;
@@ -25,7 +30,7 @@ public class SQLiteUtil {
     {
         conn = null;
         Class.forName("org.sqlite.JDBC");
-        conn = DriverManager.getConnection("jdbc:sqlite:TEST1.s3db");
+        conn = DriverManager.getConnection("jdbc:sqlite:BOARD.s3db");
 
         System.out.println("База Подключена!");
     }
@@ -33,8 +38,9 @@ public class SQLiteUtil {
     // --------Создание таблицы--------
     public static void CreateDB() throws ClassNotFoundException, SQLException
     {
+        String tableName = "board" + bdVersion;
         statmt = conn.createStatement();
-        statmt.execute("CREATE TABLE if not exists 'users' ('id' INTEGER PRIMARY KEY AUTOINCREMENT, 'name' text, 'phone' INT);");
+        statmt.execute("CREATE TABLE if not exists 'boards' ('id' INTEGER PRIMARY KEY AUTOINCREMENT, 'partyNumber' INT,'name' text, 'phone' INT);");
 
         System.out.println("Таблица создана или уже существует.");
     }

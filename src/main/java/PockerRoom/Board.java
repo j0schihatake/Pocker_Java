@@ -2,6 +2,7 @@ package PockerRoom;
 
 import NI.Components.NISample;
 import Util.ImageUtil;
+import Util.SQLiteUtil;
 import Util.StringUtil;
 import net.sourceforge.tess4j.TesseractException;
 import java.awt.*;
@@ -13,8 +14,6 @@ import java.util.ArrayList;
  * Чтобы облегчить жизнь, привязываемся не к конкретной позиции а к соотношениям(высоты к ширине).
  */
 public class Board {
-
-    Board lastBoardState = null;
 
     public static String login = "Hatake";
     public static int maxBoardCount = 3;
@@ -80,6 +79,41 @@ public class Board {
      * Максимальный стек
      */
     public String maxStek;
+
+    /**
+     * Число игроков на этапе
+     */
+    public int playersCount;
+
+    /**
+     * Позиция на которой игрок начинал игру
+     */
+    public int startPlayerPosition;
+
+    /**
+     * Позиция на которой игрок оказался в этой игре
+     */
+    public int stagePlayerPpsition;
+
+    /**
+     * Размер ставки перед игроком:
+     */
+    public int betPrePlayer;
+
+    /**
+     * Число игроков которые будут ходить после игрока:
+     */
+    public int postPlayerCount;
+
+    /**
+     * Комбинация принятых решений до текущего этапа:
+     */
+    public int combo;
+
+    /**
+     * Результат текущей раздачи:
+     */
+    public int result;
 
     /**
      * Название стола:
@@ -381,23 +415,6 @@ public class Board {
     }
 
     /**
-     * Метод проверяет сидим ли мы за столом(Без полного распознавания стола);
-     * @return
-     */
-    public static Boolean playerInGame() throws TesseractException, AWTException {
-        String corLogin = StringUtil.correctTesserractString(ImageUtil.recognition(ImageUtil.getBonusContrast(ImageUtil.cropImage(ImageUtil.getStarWindow(), new Rectangle(616, 692, 154,25)))),6);
-        Boolean result = Board.login.equals(corLogin);
-        System.out.print("corLogin = " + corLogin + ", result = " + Board.login.equals(corLogin));
-        System.out.println();
-        return result;
-    }
-
-    public static Boolean playerActive() throws AWTException {
-        String pixel = String.valueOf(ImageUtil.getCollor(ImageUtil.getStarWindow(), 529, 722));
-        return  pixel.equals("-6052957");
-    }
-
-    /**
      * Возвращает масть карты 0(левая на столе)
      * @return
      * @throws AWTException
@@ -669,8 +686,6 @@ public class Board {
             upRightPlayer.role = 4;
             downRightPlayer.role = 5;
         }
-
-
     }
 
     /**
@@ -893,5 +908,162 @@ public class Board {
             System.out.println();
         }
           */
+    }
+
+    /**
+     * Метод выполняет запись прочитанных данных в таблицу boardX где X текущая версия набора данных
+     */
+    public void saveBoard() throws TesseractException, AWTException {
+
+        String sqliteCommand = "INSERT INTO 'board" + SQLiteUtil.bdVersion + "' "
+                + "('partyNumber', "
+                + "'boardName', "
+                + "'maxStek', "
+                + "'playersCount', "
+                + "'bankMoney', "
+                + "'stage', "
+                + "'cart0', "
+                + "'cart0Mast', "
+                + "'cart1', "
+                + "'cart1Mast', "
+                + "'cart2', "
+                + "'cart2Mast', "
+                + "'cart3', "
+                + "'cart3Mast', "
+                + "'cart4', "
+                + "'cart4Mast', "
+                + "'playerCart0', "
+                + "'playerCart0Mast', "
+                + "'startPlayerPosition', "
+                + "'stagePlayerPosition', "
+
+                + "'downLeftPlayerLogin', "
+                + "'downLeftPlayerMoney', "
+                + "'downLeftPlayerRole', "
+                + "'downLeftPlayerAction', "
+                + "'downLeftPlayerProbability', "
+                + "'downLeftPlayerBenefitBoard', "
+
+                + "'upLeftPlayerLogin', "
+                + "'upLeftPlayerMoney', "
+                + "'upLeftPlayerRole', "
+                + "'upLeftPlayerAction', "
+                + "'upLeftPlayerProbability', "
+                + "'upLeftPlayerBenefitBoard', "
+
+                + "'upCenterPlayerLogin', "
+                + "'upCenterPlayerMoney', "
+                + "'upCenterPlayerRole', "
+                + "'upCenterPlayerAction', "
+                + "'upCenterPlayerProbability', "
+                + "'upCenterPlayerBenefitBoard', "
+
+                + "'upRightPlayerLogin', "
+                + "'upRightPlayerMoney', "
+                + "'upRightPlayerRole', "
+                + "'upRightPlayerAction', "
+                + "'upRightPlayerProbability', "
+                + "'upRightPlayerBenefitBoard', "
+
+                + "'downRightPlayerLogin', "
+                + "'downRightPlayerMoney', "
+                + "'downRightPlayerRole', "
+                + "'downRightPlayerAction', "
+                + "'downRightPlayerProbability', "
+                + "'downRightPlayerBenefitBoard', "
+
+                + "'downCenterPlayerLogin', "
+                + "'downCenterPlayerMoney', "
+                + "'downCenterPlayerRole', "
+                + "'downCenterPlayerAction', "
+                + "'downCenterPlayerProbability', "
+                + "'downCenterPlayerBenefitBoard', "
+
+                + "'betPrePlayer', "
+                + "'postPlayerCount', "
+                + "'combo', "
+                + "'result', "
+                + ") VALUES ('"
+                + partyNumber
+                + "', "
+                + boardName
+                + "', "
+                + maxStek
+                + "', "
+                + playersCount
+                + "', "
+                + bankMoney
+                + "', "
+                + stage
+                + "', "
+                + cart0
+                + "', "
+                + cart0Mast
+                + "', "
+                + cart1
+                + "', "
+                + cart1Mast
+                + "', "
+                + cart2
+                + "', "
+                + cart2Mast
+                + "', "
+                + cart3
+                + "', "
+                + cart3Mast
+                + "', "
+                + cart4
+                + "', "
+                + cart4Mast
+                + "', "
+                + playerCart0
+                + "', "
+                + playerCart0Mast
+                + "', "
+                + playerCart1
+                + "', "
+                + playerCart1Mast
+                + "', ";
+                for(Player p : players){
+                    sqliteCommand = sqliteCommand
+                            + "'" + p.playerLogin + "', "
+                            + "'" + p.pMoney + "', "
+                            + "'" + p.role + "', "
+                            + "'" + p.playerAction + "', "
+                            + "'" + p.probabilityOfImprovment + "', "
+                            + "'" + p.benefitBoard + "', ";
+                }
+                sqliteCommand = sqliteCommand
+                        + betPrePlayer
+                        + "', "
+                        + postPlayerCount
+                        + "', "
+                        + postPlayerCount
+                        + "', "
+                        + combo
+                        + "', "
+                        +result
+                        + "'); ";
+
+
+        System.out.print("NumberPeriod:" + partyNumber);
+    }
+
+    //-----------------------------------------------Статические методы-------------------------------------------------
+    /**
+     * Метод проверяет сидим ли мы за столом(Без полного распознавания стола);
+     * @return
+     */
+    public static Boolean playerInGame() throws TesseractException, AWTException {
+        String corLogin = StringUtil.correctTesserractString(ImageUtil.recognition(ImageUtil.getBonusContrast(ImageUtil.cropImage(ImageUtil.getStarWindow(), new Rectangle(616, 692, 154,25)))),6);
+        Boolean result = Board.login.equals(corLogin);
+        System.out.print("corLogin = " + corLogin + ", result = " + Board.login.equals(corLogin));
+        System.out.println();
+        return result;
+    }
+
+    public static Boolean playerActive() throws AWTException {
+        String pixel = String.valueOf(ImageUtil.getCollor(ImageUtil.getStarWindow(), 529, 722));
+        return  pixel.equals("-6052957");
     }
 }
