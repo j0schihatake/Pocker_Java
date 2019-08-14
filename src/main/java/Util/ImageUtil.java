@@ -2,22 +2,31 @@ package Util;
 
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
+import org.bytedeco.javacpp.BytePointer;
+import org.bytedeco.javacpp.lept;
+import org.bytedeco.javacpp.tesseract;
 
 import java.awt.*;
 import java.awt.color.ColorSpace;
-import java.awt.image.BufferedImage;
-import java.awt.image.ColorConvertOp;
-import java.awt.image.PixelGrabber;
-import java.awt.image.RescaleOp;
+import java.awt.image.*;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.imageio.ImageIO;
 
+import static org.bytedeco.javacpp.lept.pixDestroy;
+import static org.bytedeco.javacpp.lept.pixReadMem;
+
 public class ImageUtil {
 
     public static Rectangle starWindow = new Rectangle(339,65, 1321,940);
+
+    public static final int OCR_TIME_THRESHOLD_MS = 300;
+    public static final int OCR_COLOR_THRESHOLD = 180;
 
     /**
      * Метод возвращает BufferedImage открытого стола.
@@ -68,7 +77,7 @@ public class ImageUtil {
      */
     public static BufferedImage cropAndSaveImage(String patchName, Rectangle rect) throws AWTException, IOException {
         BufferedImage dest = ImageUtil.getStarWindow().getSubimage(rect.x, rect.y, rect.width, rect.height);
-        ImageIO.write(ImageUtil.getBonusContrast(dest), "JPG", new File(patchName));
+        ImageIO.write(convertoBlackAndWhite(dest), "JPG", new File(patchName));
         return dest;
     }
 
@@ -158,6 +167,31 @@ public class ImageUtil {
     }
 
     /**
+     * Метод выполняет коррекцию от авторов:
+     * @param imgBuff
+     * @return
+     */
+    public static BufferedImage convertoBlackAndWhite(BufferedImage imgBuff){
+        // Color image to pure black and white
+        for (int x = 0; x < imgBuff.getWidth(); x++) {
+            for (int y = 0; y < imgBuff.getHeight(); y++) {
+                Color color = new Color(imgBuff.getRGB(x, y));
+                int red = color.getRed();
+                int green = color.getBlue();
+                int blue = color.getGreen();
+                if (red + green + blue > OCR_COLOR_THRESHOLD) {
+                    red = green = blue = 0; // Black
+                } else {
+                    red = green = blue = 255; // White
+                }
+                Color col = new Color(red, green, blue);
+                imgBuff.setRGB(x, y, col.getRGB());
+            }
+        }
+        return imgBuff;
+    }
+
+    /**
      * Метод выполняет замену цвета в изображении
      */
     public void replaceColorInImage(){
@@ -186,8 +220,6 @@ public class ImageUtil {
         }
     }
 
-
-
     /**
      * Метод возвращает рандомизированное за счет даты название
      * @param patch пример: "d:\\Pocker\\Example0\\"
@@ -201,13 +233,88 @@ public class ImageUtil {
     }
 
     public static String recognition(BufferedImage image) throws TesseractException {
-        String text;
+        String text = "";
 
         Tesseract tesseract = new Tesseract();
         tesseract.setDatapath("tessdata/");
-        text = tesseract.doOCR(image);
-        System.out.print(text);
+        text = tesseract.doOCR(convertoBlackAndWhite(image));
+        //StringUtil.tesCorrect(text);
 
         return text;
+    }
+
+    public static String ocr(BufferedImage imgBuff) {
+        String parsedOut = null;
+
+        try {
+            // Color image to pure black and white
+            for (int x = 0; x < imgBuff.getWidth(); x++) {
+                for (int y = 0; y < imgBuff.getHeight(); y++) {
+                    Color color = new Color(imgBuff.getRGB(x, y));
+                    int red = color.getRed();
+                    int green = color.getBlue();
+                    int blue = color.getGreen();
+                    if (red + green + blue > OCR_COLOR_THRESHOLD) {
+                        red = green = blue = 0; // Black
+                    } else {
+                        red = green = blue = 255; // White
+                    }
+                    Color col = new Color(red, green, blue);
+                    imgBuff.setRGB(x, y, col.getRGB());
+                }
+            }
+
+            // OCR recognition
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(imgBuff, "png", baos);
+            byte[] imageBytes = baos.toByteArray();
+
+            tesseract.TessBaseAPI api = new tesseract.TessBaseAPI();
+            api.Init(null, "eng");
+            ByteBuffer imgBB = ByteBuffer.wrap(imageBytes);
+
+            lept.PIX image = pixReadMem(imgBB, imageBytes.length);
+            api.SetImage(image);
+
+            // Get OCR result
+            BytePointer outText = api.GetUTF8Text();
+
+            // Destroy used object and release memory
+            api.End();
+            //api.close();
+            outText.deallocate();
+            pixDestroy(image);
+
+            // OCR corrections
+            parsedOut = outText.getString().replaceAll("l", "1").replaceAll("Z", "2").replaceAll("O", "0")
+                    .replaceAll("B", "8").replaceAll("G", "6").replaceAll("S", "8").replaceAll("'", "")
+                    .replaceAll("‘", "").replaceAll("\\.", ":").replaceAll("E", "8").replaceAll("o", "0")
+                    .replaceAll("ﬂ", "0").replaceAll("ﬁ", "6").replaceAll("§", "5").replaceAll("I", "1")
+                    .replaceAll("T", "7").replaceAll("’", "").replaceAll("U", "0").replaceAll("D", "0");
+            if (parsedOut.length() > 7) {
+                parsedOut = parsedOut.substring(0, 7) + ":" + parsedOut.substring(8, parsedOut.length());
+            }
+            parsedOut = parsedOut.replaceAll("::", ":");
+
+            // Remove last part (number of frames)
+            int iSpace = parsedOut.lastIndexOf(" ");
+            if (iSpace != -1) {
+                parsedOut = parsedOut.substring(0, iSpace);
+            }
+        } catch (IOException e) {
+            //log.warn("IOException in OCR", e);
+        }
+        return parsedOut;
+    }
+
+    public static ByteBuffer convertImageData(BufferedImage bi)
+    {
+        byte[] pixelData = ((DataBufferByte) bi.getRaster().getDataBuffer()).getData();
+        //        return ByteBuffer.wrap(pixelData);
+        ByteBuffer buf = ByteBuffer.allocateDirect(pixelData.length);
+        buf.order(ByteOrder.nativeOrder());
+        buf.put(pixelData);
+        buf.flip();
+        return buf;
     }
 }

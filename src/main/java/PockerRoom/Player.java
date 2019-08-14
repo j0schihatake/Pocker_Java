@@ -142,7 +142,7 @@ public class Player {
      */
     public Boolean isActive() throws AWTException {
         String pixel = String.valueOf(ImageUtil.getCollor(ImageUtil.getStarWindow(), pActiveX, pActiveY));
-        return  pixel.equals(playerActive);
+        return active = pixel.equals(playerActive);
     }
 
     /**
@@ -160,11 +160,11 @@ public class Player {
      * @return
      */
     public String getPlayerLogin() throws AWTException, TesseractException {
-        return playerLogin = ImageUtil.recognition(ImageUtil.getBonusContrast(ImageUtil.cropImage(ImageUtil.getStarWindow(), playerLoginActionRectangle)));
+        return playerLogin = ImageUtil.recognition(ImageUtil.cropImage(ImageUtil.getStarWindow(), playerLoginActionRectangle));
     }
 
     public String getPlayerMoney() throws AWTException, TesseractException {
-        return  pMoney = ImageUtil.recognition(ImageUtil.getBonusContrast(ImageUtil.cropImage(ImageUtil.getStarWindow(), playerMoneyRectangle)));
+        return pMoney = ImageUtil.recognition(ImageUtil.cropImage(ImageUtil.getStarWindow(), playerMoneyRectangle));
     }
 
     /**

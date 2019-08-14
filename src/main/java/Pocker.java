@@ -1,17 +1,16 @@
-import NI.Components.NISample;
-import NI.NIPlayer;
 import PockerRoom.*;
 import Util.ImageUtil;
 import Util.InputUtil;
-import Util.SQLiteUtil;
 import Util.StringUtil;
-import jdk.internal.util.xml.impl.Input;
 import net.sourceforge.tess4j.TesseractException;
+import org.bytedeco.javacpp.BytePointer;
+import org.bytedeco.javacpp.lept;
+import org.bytedeco.javacpp.tesseract;
 
 import java.awt.*;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
-import java.util.ArrayList;
+
+import static org.bytedeco.javacpp.lept.pixDestroy;
+import static org.bytedeco.javacpp.lept.pixRead;
 
 /**
  * Pocker - Покер.
@@ -74,11 +73,11 @@ public class Pocker {
 
         // Thread.sleep(10000);
 
-        //Board one = new Board();
+        Board one = new Board();
         //Thread.sleep(1000);
         //inputTest();
 
-        InputUtil.clikOnLobbi();
+        //InputUtil.clikOnLobbi();
 
         while(1==1) {
             //one.debugBoardLogInfo();
@@ -89,11 +88,11 @@ public class Pocker {
 
             // Выводим цвет пикселя:
             //System.out.print(ImageUtil.getCollor(ImageUtil.getStarWindow(), one.cart1ActiveX,one.cart1ActiveY));
-            //System.out.print(one.getStageDescription(one.getGameStage()));
+            System.out.print(one.getStageDescription(one.getGameStage()));
             //System.out.println();
-            //ImageUtil.cropAndSaveImage(ImageUtil.getRandomName("d:\\test\\"), new Rectangle(984,548, 1, 1));
+            ImageUtil.cropAndSaveImage(ImageUtil.getRandomName("d:\\test\\"), new Rectangle(616, 692, 157,27));
 
-            InputUtil.down();
+            //InputUtil.down();
             Thread.sleep(1000);
         }
 
@@ -133,42 +132,90 @@ public class Pocker {
         }
         */
 
+        Boolean observ = true;
+
         // Теперь работаем со всеми столами:
         while(1==1){
-            //InputUtil.cursorToSaveZone();
-            // Проверяем сидим ли мы за этим столом:
-            System.out.println(Board.playerInGame());
-            if(Board.playerInGame()){
-
-                System.out.print(" Игрок сидит за столом: выполняю анализ стола:");
-                System.out.println();
-
-                // В целях теста всегда делаем чек и fold если ход
-                if(Board.playerActive()) {
-                    System.out.print(" Игрок в Активен: выполняю анализ стола:");
-                    System.out.println();
-
-                    // Раз мы сидим за данным столом Считываем всю информацию о столе:
-                    Board nextOpenBoard = new Board();
-
-                    //InputUtil.chek();
-                    InputUtil.fold();
-                }
-                InputUtil.nextBoard();
+            if(!observ){
+                //inGame();
+            }else{
+                observer();
             }
-            // Мы не сидим за этим столом пробуем сесть:
-            InputUtil.sittAll();
-            //
-            // wInputUtil.cursorToSaveZone();
-
-            //Переключаемся на следующий стол:
-            InputUtil.nextBoard();
         }
     }
 
-    public NISample createSample(){
-        NISample reportSample = null;
-        return reportSample;
+    /**
+     * Метод выполняет действия для участия в игре
+     */
+    static void inGame() throws TesseractException, AWTException, InterruptedException {
+        //InputUtil.cursorToSaveZone();
+        // Проверяем сидим ли мы за этим столом:
+        System.out.println(Board.playerInGame());
+        if(Board.playerInGame()){
+
+            System.out.print(" Игрок сидит за столом: выполняю анализ стола:");
+            System.out.println();
+
+            // В целях теста всегда делаем чек и fold если ход
+            if(Board.playerActive()) {
+                System.out.print(" Игрок в Активен: выполняю анализ стола:");
+                System.out.println();
+
+                // Раз мы сидим за данным столом Считываем всю информацию о столе:
+                Board nextOpenBoard = new Board();
+
+                //InputUtil.chek();
+                InputUtil.fold();
+            }
+            InputUtil.nextBoard();
+        }
+        // Мы не сидим за этим столом пробуем сесть:
+        InputUtil.sittAll();
+        //
+        // wInputUtil.cursorToSaveZone();
+
+        //Переключаемся на следующий стол:
+        InputUtil.nextBoard();
+    }
+
+    /**
+     * Метод ведет наблюдение за игрой
+     */
+    static void observer() throws TesseractException, AWTException {
+
+        // Считываем всю информацию о столе:
+        Board board = new Board();
+
+        if(board.stage == 0){
+
+            // Выполняем конвертацию данных в нужный формат:
+            String party = board.partyNumber;
+            String boardName = board.boardName;
+            String login = board.downCenterPlayer.playerLogin;
+            int maxSteck = StringUtil.correctTesseractInt(board.downCenterPlayer.pMoney);
+            int playerCount = board.playersCount;
+            int bankMoney = StringUtil.correctTesseractInt(board.bankMoney);
+            int stage = board.stage;
+            int cart0 = StringUtil.convertTesseractCartToInt(board.cart0, board.cart0Mast);
+
+            System.out.print("party = " + party);
+            System.out.println();
+            System.out.print("boardName = " + boardName);
+            System.out.println();
+            System.out.print("bankMoney = " + bankMoney);
+            System.out.println();
+            System.out.print("login = " + login);
+
+
+
+
+            // Создаем пример начала игры:
+            // board.saveBoard();
+
+            while(board.stage == 0){
+
+            }
+        }
     }
 }
 

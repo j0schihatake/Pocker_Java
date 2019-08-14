@@ -1,10 +1,10 @@
 package PockerRoom;
 
-import NI.Components.NISample;
 import Util.ImageUtil;
 import Util.SQLiteUtil;
 import Util.StringUtil;
 import net.sourceforge.tess4j.TesseractException;
+
 import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -106,9 +106,19 @@ public class Board {
     public int postPlayerCount;
 
     /**
-     * Комбинация принятых решений до текущего этапа:
+     * Сильнейшая комбинация карт у игрока со столом:
      */
     public int combo;
+
+    /**
+     * комбинация действий игрока приведшая к текущему результату:
+     */
+    public int comboAction;
+
+    /**
+     *  рассчитанная эффективность применения (опыт)
+     */
+    public int exp;
 
     /**
      * Результат текущей раздачи:
@@ -301,6 +311,7 @@ public class Board {
         updateAllCart();
         getBoardName();
         getPartyNumber();
+        getBankMoney();
         return this;
     }
 
@@ -359,7 +370,7 @@ public class Board {
      * @throws TesseractException
      */
     public String getBankMoney() throws AWTException, TesseractException {
-        return bankMoney = ImageUtil.recognition(ImageUtil.getBonusContrast(ImageUtil.cropImage(ImageUtil.getStarWindow(), bankMoneyRectangle)));
+        return bankMoney = ImageUtil.recognition(ImageUtil.cropImage(ImageUtil.getStarWindow(), bankMoneyRectangle));
     }
 
     /**
@@ -367,7 +378,7 @@ public class Board {
      * @return String - boardName
      */
     public String getBoardName() throws AWTException, TesseractException {
-        return boardName = ImageUtil.recognition(ImageUtil.getBonusContrast(ImageUtil.cropImage(ImageUtil.getStarWindow(), boardNameRectangle)));
+        return boardName = ImageUtil.recognition(ImageUtil.cropImage(ImageUtil.getStarWindow(), boardNameRectangle));
     }
 
     /**
@@ -387,23 +398,23 @@ public class Board {
      * @throws TesseractException
      */
     public String getCart0() throws AWTException, TesseractException {
-        return cart0 = ImageUtil.recognition(ImageUtil.getBonusContrast(ImageUtil.cropImage(ImageUtil.getStarWindow(), cart0Rectangle)));
+        return cart0 = ImageUtil.recognition(ImageUtil.cropImage(ImageUtil.getStarWindow(), cart0Rectangle));
     }
 
     public String getCart1() throws AWTException, TesseractException {
-        return cart1 = ImageUtil.recognition(ImageUtil.getBonusContrast(ImageUtil.cropImage(ImageUtil.getStarWindow(), cart1Rectangle)));
+        return cart1 = ImageUtil.recognition(ImageUtil.cropImage(ImageUtil.getStarWindow(), cart1Rectangle));
     }
 
     public String getCart2() throws AWTException, TesseractException {
-        return cart2 = ImageUtil.recognition(ImageUtil.getBonusContrast(ImageUtil.cropImage(ImageUtil.getStarWindow(), cart2Rectangle)));
+        return cart2 = ImageUtil.recognition(ImageUtil.cropImage(ImageUtil.getStarWindow(), cart2Rectangle));
     }
 
     public String getCart3() throws AWTException, TesseractException {
-        return cart3 = ImageUtil.recognition(ImageUtil.getBonusContrast(ImageUtil.cropImage(ImageUtil.getStarWindow(), cart3Rectangle)));
+        return cart3 = ImageUtil.recognition(ImageUtil.cropImage(ImageUtil.getStarWindow(), cart3Rectangle));
     }
 
     public String getCart4() throws AWTException, TesseractException {
-        return cart4 = ImageUtil.recognition(ImageUtil.getBonusContrast(ImageUtil.cropImage(ImageUtil.getStarWindow(), cart4Rectangle)));
+        return cart4 = ImageUtil.recognition(ImageUtil.cropImage(ImageUtil.getStarWindow(), cart4Rectangle));
     }
 
     public String getPlayerCart0() throws AWTException, TesseractException {
@@ -748,7 +759,7 @@ public class Board {
         upLeftPlayer.playerMoneyRectangle = new Rectangle(56, 278, 154, 25);
 
         // Настройка downCenterPlayer:
-        downCenterPlayer.playerLoginActionRectangle = new Rectangle(616, 692, 154,25);
+        downCenterPlayer.playerLoginActionRectangle = new Rectangle(616, 692, 157,27);
         downCenterPlayer.playerMoneyRectangle = new Rectangle(616, 726,154, 25);
 
         // Настройка upCenterPlayer:
@@ -916,73 +927,58 @@ public class Board {
     public void saveBoard() throws TesseractException, AWTException {
 
         String sqliteCommand = "INSERT INTO 'board" + SQLiteUtil.bdVersion + "' "
-                + "('partyNumber', "
-                + "'boardName', "
-                + "'maxStek', "
-                + "'playersCount', "
-                + "'bankMoney', "
-                + "'stage', "
-                + "'cart0', "
-                + "'cart0Mast', "
+                + "('partyNumber', "                                // номер раздачи
+                + "'boardName', "                                   // название стола
+                + "'maxStek', "                                     // максимум стека для определения ставок и действий
+                + "'playersCount', "                                // число игроков
+                + "'bankMoney', "                                   // сумма денег в банке
+                + "'stage', "                                       // текущий игровой этап
+                + "'cart0', "                                       // самая первая карта слева на столе (конвертированное значение карты в int)
                 + "'cart1', "
-                + "'cart1Mast', "
                 + "'cart2', "
-                + "'cart2Mast', "
                 + "'cart3', "
-                + "'cart3Mast', "
                 + "'cart4', "
-                + "'cart4Mast', "
                 + "'playerCart0', "
-                + "'playerCart0Mast', "
-                + "'startPlayerPosition', "
-                + "'stagePlayerPosition', "
+                + "'playerCart1', "
+                + "'startPlayerPosition', "                         // позиция на которой начинал игрок
+                + "'stagePlayerPosition', "                         // позиция на которой игрок на этом этапе
 
                 + "'downLeftPlayerLogin', "
                 + "'downLeftPlayerMoney', "
                 + "'downLeftPlayerRole', "
                 + "'downLeftPlayerAction', "
-                + "'downLeftPlayerProbability', "
-                + "'downLeftPlayerBenefitBoard', "
 
                 + "'upLeftPlayerLogin', "
                 + "'upLeftPlayerMoney', "
                 + "'upLeftPlayerRole', "
                 + "'upLeftPlayerAction', "
-                + "'upLeftPlayerProbability', "
-                + "'upLeftPlayerBenefitBoard', "
 
                 + "'upCenterPlayerLogin', "
                 + "'upCenterPlayerMoney', "
                 + "'upCenterPlayerRole', "
                 + "'upCenterPlayerAction', "
-                + "'upCenterPlayerProbability', "
-                + "'upCenterPlayerBenefitBoard', "
 
                 + "'upRightPlayerLogin', "
                 + "'upRightPlayerMoney', "
                 + "'upRightPlayerRole', "
                 + "'upRightPlayerAction', "
-                + "'upRightPlayerProbability', "
-                + "'upRightPlayerBenefitBoard', "
 
                 + "'downRightPlayerLogin', "
                 + "'downRightPlayerMoney', "
                 + "'downRightPlayerRole', "
                 + "'downRightPlayerAction', "
-                + "'downRightPlayerProbability', "
-                + "'downRightPlayerBenefitBoard', "
 
                 + "'downCenterPlayerLogin', "
                 + "'downCenterPlayerMoney', "
                 + "'downCenterPlayerRole', "
                 + "'downCenterPlayerAction', "
-                + "'downCenterPlayerProbability', "
-                + "'downCenterPlayerBenefitBoard', "
 
-                + "'betPrePlayer', "
-                + "'postPlayerCount', "
-                + "'combo', "
-                + "'result', "
+                + "'betPrePlayer', "                                    // величина ставки перед ходом игрока
+                + "'postPlayerCount', "                                 // число игроков после игрока
+                + "'combo', "                                           // номер самой крупной комбинации которая сложилась у игрока
+                + "'comboAction', "
+                + "'result', "                                          // результат игры
+                + "'exp', "                                             // эффективность данного примера
                 + ") VALUES ('"
                 + partyNumber
                 + "', "
@@ -998,55 +994,99 @@ public class Board {
                 + "', "
                 + cart0
                 + "', "
-                + cart0Mast
-                + "', "
                 + cart1
-                + "', "
-                + cart1Mast
                 + "', "
                 + cart2
                 + "', "
-                + cart2Mast
-                + "', "
                 + cart3
-                + "', "
-                + cart3Mast
                 + "', "
                 + cart4
                 + "', "
-                + cart4Mast
-                + "', "
                 + playerCart0
                 + "', "
-                + playerCart0Mast
-                + "', "
                 + playerCart1
-                + "', "
-                + playerCart1Mast
                 + "', ";
                 for(Player p : players){
                     sqliteCommand = sqliteCommand
                             + "'" + p.playerLogin + "', "
                             + "'" + p.pMoney + "', "
                             + "'" + p.role + "', "
-                            + "'" + p.playerAction + "', "
-                            + "'" + p.probabilityOfImprovment + "', "
-                            + "'" + p.benefitBoard + "', ";
+                            + "'" + p.playerAction + "', ";
                 }
                 sqliteCommand = sqliteCommand
                         + betPrePlayer
                         + "', "
                         + postPlayerCount
                         + "', "
-                        + postPlayerCount
-                        + "', "
                         + combo
                         + "', "
-                        +result
+                        + comboAction
+                        + "', "
+                        + result
+                        + "', "
+                        + exp
                         + "'); ";
+    }
 
+    /**
+     * Метод возвращает число игроков после указанного игрока на данном этапе игры
+     * @param playerRole
+     * @return
+     */
+    public int getPostPlayerCount(int playerRole){
+        int result = 0;
+        for(Player player : players){
+            if(player.role > playerRole){
+                result += 1;
+            }
+        }
+        return result;
+    }
 
-        System.out.print("NumberPeriod:" + partyNumber);
+    /**
+     * Метод возвращает число игроков до указанного игрока на данном этапе игры
+     * @param playerRole
+     * @return
+     */
+    public int getPrePlayerCount(int playerRole){
+        int result = 0;
+        for(Player player : players){
+            if(player.role < playerRole){
+                result += 1;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Метод возвращает число активных на данном этапе игроков
+     * @return
+     */
+    public int getActivePlayerCount(){
+        int result = 0;
+        for(Player player : players){
+            if(player.active){
+                result += 1;
+            }
+        }
+        return playersCount = result;
+    }
+
+    /**
+     * Метод рассчитывает проделанные действия игроков начиная с предыдущего сканирования стола
+     * @return
+     */
+    public void сalculatePlayerAction(){
+
+        // Префлоп, нет истории
+        if(stage == 0){
+
+        }else{
+
+            // тут получаем предыдущий board с таким-же номером раздачи
+            for(Player player : players){}
+
+        }
     }
 
     //-----------------------------------------------Статические методы-------------------------------------------------
@@ -1055,7 +1095,7 @@ public class Board {
      * @return
      */
     public static Boolean playerInGame() throws TesseractException, AWTException {
-        String corLogin = StringUtil.correctTesserractString(ImageUtil.recognition(ImageUtil.getBonusContrast(ImageUtil.cropImage(ImageUtil.getStarWindow(), new Rectangle(616, 692, 154,25)))),6);
+        String corLogin = StringUtil.correctTesserractString(ImageUtil.recognition(ImageUtil.cropImage(ImageUtil.getStarWindow(), new Rectangle(616, 692, 154,25))),6);
         Boolean result = Board.login.equals(corLogin);
         System.out.print("corLogin = " + corLogin + ", result = " + Board.login.equals(corLogin));
         System.out.println();
